@@ -1,0 +1,238 @@
+.header-banner-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    position: relative;
+
+    .primary-wrapper {
+        margin: 0 auto;
+        max-width: 1000px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .main-navigation {}
+
+    .horizontal-nav {
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        a {
+            display: block;
+        }
+
+        .folder {
+
+            position: relative;
+            cursor: pointer;
+
+            ul {
+                display: block;
+                position: absolute;
+                top: -9999px;
+                left: 0;
+                z-index: 999;
+            }
+
+            li {
+                display: block;
+            }
+
+            &:hover ul {
+                top: 100%;
+            }
+
+        }
+    }
+
+    .mobile-menu-box,
+    .mobile-menu-label {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .header-banner-top {
+
+
+        .horizontal-nav {
+            overflow: hidden;
+            height: 0;
+        }
+
+        .mobile-menu-box {
+            display: none;
+        }
+
+        .mobile-menu-label {
+            display: block;
+            cursor: pointer;
+        }
+
+        .mobile-menu-label:before {
+            content: 'Menu';
+        }
+
+        .mobile-menu-box:checked {
+            ~.horizontal-nav {
+                height: auto;
+            }
+
+            ~.mobile-menu-label:before {
+                content: 'Close';
+            }
+        }
+
+        .horizontal-nav {
+
+            li {
+                display: block;
+            }
+
+
+            .folder ul {
+                position: static;
+            }
+
+            .folder-toggle-label a:before {
+                content: '+ ';
+            }
+
+            .folder-toggle-box:checked~.folder-toggle-label a:before {
+                content: '- ';
+            }
+
+            .folder:hover ul,
+            .folder-toggle-box~ul {
+                display: none;
+            }
+
+            .folder-toggle-box:checked~ul {
+                display: block;
+            }
+
+        }
+
+
+
+    }
+}
+
+
+
+
+
+
+
+.header-banner-top {
+
+    background: #222;
+    text-align: center;
+    z-index: 11;
+
+    .horizontal-nav {
+        a {
+            padding: 1.5em 1em;
+            color: #aaa;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        a:hover,
+        .active-link a {
+            color: #fff;
+        }
+
+        .folder {
+
+            ul {
+                background-color: #494949;
+                transition: padding 0.14s ease-out;
+                text-align: left;
+            }
+
+            a {
+                padding: 0.5em 1em;
+                white-space: nowrap;
+            }
+
+            &:hover ul {
+                padding: 0.5em 0;
+            }
+
+        }
+
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .header-banner-top {
+
+        .horizontal-nav {
+            a {
+                padding: 0.75em 1em;
+            }
+
+            >ul>li:first-child a {
+                padding-top: 2em;
+            }
+
+            >ul>li:last-child a {
+                padding-bottom: 2em;
+            }
+
+            li {
+                display: block;
+            }
+
+
+            .folder ul {
+                text-align: center;
+                padding: 0.5em 0;
+                margin: 0.5em 0;
+                transition: none;
+                background-color: #292929;
+            }
+
+            .folder:hover ul {
+                padding: 0.5em 0;
+            }
+
+            .folder-toggle-label a {
+                cursor: pointer;
+            }
+
+        }
+
+        .mobile-menu-label {
+            background-color: #292929;
+            padding: 1.5em 1em;
+        }
+
+        .mobile-menu-box:checked~.mobile-menu-label {}
+
+        .mobile-menu-box:checked {
+            ~.horizontal-nav {
+                padding: 1em 0;
+            }
+
+            ~.mobile-menu-label:before {
+                content: 'Close';
+            }
+        }
+
+    }
+}
