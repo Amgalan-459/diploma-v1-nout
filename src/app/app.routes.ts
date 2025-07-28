@@ -2,11 +2,61 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './user/pages/home/home.component';
 import { LoginComponent } from './user/pages/auth/login/login.component';
 import { SignUpComponent } from './user/pages/auth/sign-up/sign-up.component';
+import { AboutProjectComponent } from './user/pages/naregyme/about-project/about-project.component';
+import { InfoMetricsComponent } from './user/pages/naregyme/info-metrics/info-metrics.component';
+import { SuccessfulCasesComponent } from './user/pages/naregyme/successful-cases/successful-cases.component';
+import { AppComponent } from './user/pages/naregyme/app/app.component';
+import { ProgrammsCoursesComponent } from './user/pages/naregyme/programms-courses/programms-courses.component';
+import { TrainersAndExpertsComponent } from './user/pages/naregyme/trainers-and-experts/trainers-and-experts.component';
+import { ReviewsComponent } from './user/pages/naregyme/reviews/reviews.component';
+import { MotivationComponent } from './user/pages/naregyme/motivation/motivation.component';
+import { FreqAskedQuestionsComponent } from './user/pages/naregyme/freq-asked-questions/freq-asked-questions.component';
+import { JoinToCommunityComponent } from './user/pages/naregyme/join-to-community/join-to-community.component';
+import { AboutCommunityComponent } from './user/pages/recamp/about-community/about-community.component';
+import { RecompozitionComponent } from './user/pages/recamp/recompozition/recompozition.component';
+import { RoadMapComponent } from './user/pages/recamp/road-map/road-map.component';
+import { FotoesVideosFromEventsComponent } from './user/pages/recamp/fotoes-videos-from-events/fotoes-videos-from-events.component';
+import { JoinToCommunityRecampComponent } from './user/pages/recamp/join-to-community-recamp/join-to-community-recamp.component';
+import { AboutComponent } from './user/pages/programms-and-courses/about/about.component';
+import { KnowladgeBaseComponent } from './user/pages/knowladge-base/knowladge-base.component';
+import { ShopComponent } from './user/pages/shop/shop.component';
+import { BodyFatPercentageComponent } from './user/pages/calculators/body-fat-percentage/body-fat-percentage.component';
+import { BasalMetabolismComponent } from './user/pages/calculators/basal-metabolism/basal-metabolism.component';
+import { MusclePercentageComponent } from './user/pages/calculators/muscle-percentage/muscle-percentage.component';
+import { CcalDailyLoadComponent } from './user/pages/calculators/ccal-daily-load/ccal-daily-load.component';
+import { PartipantsResultsComponent } from './user/pages/we-naregyme/partipants-results/partipants-results.component';
+import { HonorBoardComponent } from './user/pages/we-naregyme/honor-board/honor-board.component';
+import { PersonalAccountComponent } from './user/pages/personal-account/personal-account.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'auth/login', component: LoginComponent },
     { path: 'auth/signup', component: SignUpComponent },
+    { path: 'naregyme/about-project', component: AboutProjectComponent },
+    { path: 'naregyme/info-metrics', component: InfoMetricsComponent },
+    { path: 'naregyme/successful-cases', component: SuccessfulCasesComponent },
+    { path: 'naregyme/app', component: AppComponent },
+    { path: 'naregyme/programms-and-courses', component: ProgrammsCoursesComponent },
+    { path: 'naregyme/trainers-and-experts', component: TrainersAndExpertsComponent },
+    { path: 'naregyme/reviews', component: ReviewsComponent },
+    { path: 'naregyme/motivation', component: MotivationComponent },
+    { path: 'naregyme/freq-asked-questions', component: FreqAskedQuestionsComponent },
+    { path: 'naregyme/join-to-community', component: JoinToCommunityComponent },
+    { path: 'recamp/about-community', component: AboutCommunityComponent },
+    { path: 'recamp/recompozition', component: RecompozitionComponent },
+    { path: 'recamp/road-map', component: RoadMapComponent },
+    { path: 'recamp/fotos-and-videos-from-events', component: FotoesVideosFromEventsComponent },
+    { path: 'recamp/join-to-community', component: JoinToCommunityRecampComponent },
+    { path: 'programms-and-courses/about', component: AboutComponent },
+    { path: 'knowladge-base', component: KnowladgeBaseComponent },
+    { path: 'shop', component: ShopComponent },
+    { path: 'calculators/body-fat-percentage', component: BodyFatPercentageComponent },
+    { path: 'calculators/basal-metabolism', component: BasalMetabolismComponent },
+    { path: 'calculators/muscle-percentage', component: MusclePercentageComponent },
+    { path: 'calculators/ccal-daily-load', component: CcalDailyLoadComponent },
+    { path: 'we-naregyme/partipants-results', component: PartipantsResultsComponent },
+    { path: 'we-naregyme/honor-board', component: HonorBoardComponent },
+    { path: 'user/personal-account', component: PersonalAccountComponent },
     { path: '**', redirectTo: 'home' }
 ];
