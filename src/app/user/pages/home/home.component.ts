@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -8,5 +8,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  @ViewChild('dropside') dropside!: ElementRef
 
+  onClickDrop(){
+    this.dropside.nativeElement.classList.toggle("show")
+    console.log(this.dropside.nativeElement.classList)
+  }
 }
