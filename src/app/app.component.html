@@ -1,95 +1,31 @@
 <header class="header-banner-top">
     <h1 class="logo"><a class="logo-link" routerLink="/home" routerLinkActive="active">NAREGYME</a></h1>
+    
     <div class="main-navigation header-nav container flex-container horizontal-nav">
         <input type="checkbox" name="mobile-menu-toggle" id="mobile-menu-toggle" class="mobile-menu-box" />
         <nav class="horizontal-nav primary-wrapper" role='navigation'>
             <ul class="header-menu flex-container">
-                <li class="folder">
-                    <input type="checkbox" name="folder-toggle-1" id="folder-toggle-1"
-                        class="folder-toggle-box hidden" />
-                    <label for="folder-toggle-1" class="folder-toggle-label"><a>NAREGYME</a></label>
-                    <ul>
-                        <li><a routerLink="/naregyme/about-project" routerLinkActive="active">О проекте</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/info-metrics" routerLinkActive="active">Инфографичнные метрики успехов проекта</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/successful-cases" routerLinkActive="active">Успешные Кейсы (ДО / ПОСЛЕ)</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/app" routerLinkActive="active">Приложение<br>
-                                <!-- (Онлайн Академия /<br> Тренировки / Питание /<br> Результаты / Метрики /<br> Отчеты / Трекеры /<br> Наполнение) --></a>
-                        </li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/programms-and-courses" routerLinkActive="active">Программы и курсы (ТОП)</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/trainers-and-experts" routerLinkActive="active">Тренера и эксперты проекта</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/reviews" routerLinkActive="active">Отзывы членов</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/motivation" routerLinkActive="active">Мотивация (оффер)</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/freq-asked-questions" routerLinkActive="active">Часто задаваемые вопросы</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/naregyme/join-to-community" routerLinkActive="active">Присоединиться к сообществу </a></li>
-                    </ul>
-                </li>
-                <li class="folder">
-                    <input type="checkbox" name="folder-toggle-2" id="folder-toggle-2"
-                        class="folder-toggle-box hidden" />
-                    <label for="folder-toggle-2" class="folder-toggle-label"><a>RECAMP</a></label>
-                    <ul>
-                        <li><a routerLink="/recamp/about-community" routerLinkActive="active">О сообществе</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/recamp/recompozition" routerLinkActive="active">RECOMPOZITION О системе — методике</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/recamp/road-map" routerLinkActive="active">Дорожная карта проекта — этапы</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/recamp/fotos-and-videos-from-events" routerLinkActive="active">Фото и видео со встреч и мероприятий</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/recamp/join-to-community" routerLinkActive="active">Присоединиться к сообществу </a></li>
-                    </ul>
-                </li>
-                <li class="folder">
-                    <input type="checkbox" name="folder-toggle-3" id="folder-toggle-3"
-                        class="folder-toggle-box hidden" />
-                    <label for="folder-toggle-3" class="folder-toggle-label"><a>Программы и курсы</a></label>
-                    <ul>
-                        <li><a routerLink="/programms-and-courses/about" routerLinkActive="active">О программах и курсах (Концепция)</a></li>
-                    </ul>
-                </li>
+                <li><a routerLink="/recamp" routerLinkActive="active">RECAMP</a></li>
+                <li><a routerLink="/programms-and-courses" routerLinkActive="active">Программы и курсы</a></li>
                 <li><a class="header-menu-link" routerLink="/knowladge-base" routerLinkActive="active">База знаний</a></li>
                 <li><a class="header-menu-link" routerLink="/shop" routerLinkActive="active">Магазин</a></li>
-                <li class="folder">
-                    <input type="checkbox" name="folder-toggle-2" id="folder-toggle-2"
-                        class="folder-toggle-box hidden" />
-                    <label for="folder-toggle-2" class="folder-toggle-label"><a>Калькуляторы</a></label>
-                    <ul>
-                        <li><a routerLink="/calculators/body-fat-percentage" routerLinkActive="active">Процент жира в организме</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/calculators/basal-metabolism" routerLinkActive="active">Основной обмен веществ</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/calculators/muscle-percentage" routerLinkActive="active">Процент мышц в организме</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/calculators/ccal-daily-load" routerLinkActive="active">ККал повседневной нагрузки</a></li>
-                    </ul>
-                </li>
-                <li class="folder">
-                    <input type="checkbox" name="folder-toggle-2" id="folder-toggle-2"
-                        class="folder-toggle-box hidden" />
-                    <label for="folder-toggle-2" class="folder-toggle-label"><a>Мы #NAREGYME</a></label>
-                    <ul>
-                        <li><a routerLink="/we-naregyme/partipants-results" routerLinkActive="active">Результаты участиников (фильтры)</a></li>
-                        <hr class="header-hr">
-                        <li><a routerLink="/we-naregyme/honor-board" routerLinkActive="active">Доска почета</a></li>
-                    </ul>
-                </li>
+                <li><a routerLink="/calculators" routerLinkActive="active">Калькуляторы</a></li>
+                <li><a routerLink="/we-naregyme" routerLinkActive="active">мы #NAREGYME</a></li>
             </ul>
         </nav>
         <label for="mobile-menu-toggle" class="mobile-menu-label hidden"></label>
     </div>
 
-    <div class="logged-in">
-        <p> <a class="lk" routerLink="/user/personal-account" routerLinkActive="active"> Hello, Amgalan </a></p>
-        <button class="ghost-button sigh-out-button">Log out</button>
-    </div>
+    @if(isLoggedIn) {
+        <div class="logged-in">
+            <p class="header-p"> <a class="lk" routerLink="/user/personal-account" routerLinkActive="active"> Hello, Amgalan </a></p>
+            <button class="ghost-button sigh-out-button" (click)="logout()">Log out</button>
+        </div>
+    }@else {
+        <div class="auth">
+            <p> <a class="login" routerLink="/auth/login" routerLinkActive="active">Login</a></p>
+            <p> <a class="login" routerLink="/auth/signup" routerLinkActive="active">Sign up</a></p>
+        </div>
+    }
 </header>
 <router-outlet />
