@@ -1,0 +1,78 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 100vh;
+    background-color: gray;
+    color: white;
+    transition: width 0.75s ease;
+    overflow: hidden;
+    z-index: 10;
+    padding-top: 15vh;
+}
+
+.sidebar:hover {
+    width: 250px;
+}
+
+.sidebar .menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .menu-items li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative; 
+}
+
+.sidebar .menu-items .label {
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.sidebar:hover .menu-items .label {
+    opacity: 1;
+}
+
+.sidebar .menu-items li:hover {
+    background-color: rgb(92, 92, 92);
+}
+
+.sidebar .menu-items img {
+    width: 60px;
+    height: 60px;
+}
+
+.dropside {
+    display: none;
+    position: fixed; 
+    top: 0; 
+    left: 250px;
+    width: 250px;
+    height: 100vh;
+    background-color: blue;
+    color: white;
+    z-index: 11;
+    transition: left 0.5s ease;
+}
+
+.show {
+    display: block !important;
+    left: 250px;
+    color: black;
+}
+
+.content {
+    margin-left: 90px;
+    padding: 20px;
+    width: 100vh;
+    transition: margin-left 1s ease;
+}

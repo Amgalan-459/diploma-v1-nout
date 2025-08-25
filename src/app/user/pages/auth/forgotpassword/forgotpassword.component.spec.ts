@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgrammSoursesComponent } from './programm-sourses.component';
+import { ForgotpasswordComponent } from './forgotpassword.component';
 
-describe('ProgrammSoursesComponent', () => {
-  let component: ProgrammSoursesComponent;
-  let fixture: ComponentFixture<ProgrammSoursesComponent>;
+describe('ForgotpasswordComponent', () => {
+  let component: ForgotpasswordComponent;
+  let fixture: ComponentFixture<ForgotpasswordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProgrammSoursesComponent]
+      imports: [ForgotpasswordComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProgrammSoursesComponent);
+    fixture = TestBed.createComponent(ForgotpasswordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
