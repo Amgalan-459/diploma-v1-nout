@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import { isPlatformBrowser } from '@angular/common';
 import { TraineeData } from '../interfaces/trainee-data';
 import { env } from 'process';
+import { TraineeService } from './trainee.service';
 
 export interface JwtPayload {
   exp?: number;
@@ -29,7 +30,7 @@ export class AuthService {
   private loggedInSubject = new BehaviorSubject<boolean>(this.hasValidToken());
   loggedIn$ = this.loggedInSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private traineeService: TraineeService) { }
 
   // Вход пользователя
   async login(email: string, password: string) {
@@ -94,6 +95,36 @@ export class AuthService {
   }
 
   async forgotPassword(email: string): Promise<number> {
+    let trainee: TraineeData | null;
+    await this.traineeService.getTraineeByEmail(email).then(res => trainee = res)
+    if (trainee! === null){
+      throw new Error('Not stated email')
+    }
     return await firstValueFrom(this.http.post<number>(environment.apiUrl + '/api/forgetpassword/' + email, null));
+  }
+
+  async AddOrUpdateTrainee(emailUser: string, passwordUser: string, nameUser: string): Promise<TraineeData> {
+    let trainee: TraineeData;
+    try {
+      trainee = await this.traineeService.getTraineeByEmail(emailUser)
+      trainee.password = passwordUser
+    }
+    catch(ex){
+      trainee = {
+          id: 0,
+          name: nameUser,
+          surname: '',
+          email: emailUser,
+          phoneNumber: null,
+          sex: 0,
+          password: passwordUser,
+          countOfTrainsInWeek: 0,
+          isActive: true,
+          trainerId: 1,
+          trainer: null,
+          workouts: []
+      }
+    }
+    return await firstValueFrom(this.http.post<TraineeData>(environment.apiUrl + '/api/trainee', trainee))
   }
 }

@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { passwordMatchValidator } from '../../../../core/validators/password-match.validator';
 import { AuthService } from '../../../../core/services/auth.service';
+import { isErrored } from 'stream';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -27,26 +28,43 @@ export class ForgotpasswordComponent {
     passwordConiform: new FormControl('', [Validators.required, Validators.minLength(8)])
   }, { validators: passwordMatchValidator })
 
+  code: number = 0;
+  isEmailValid: boolean = true
+  isError: boolean = false
+  isCodeValid: boolean = true
+
   constructor(private router: Router, private authService: AuthService) { }
 
-  sendCode() {
+  async sendCode() {
     if (this.emailForm.valid) {
-      console.log('Send code to:', this.emailForm.value.email);
-      this.step = 'code';
+      try{
+        this.code = await this.authService.forgotPassword(this.emailForm.value.email!)
+        this.step = 'code';
+      }
+      catch(ex){
+        console.log(ex)
+        this.isError = true
+      }
     }
   }
 
   confirmCode() {
     if (this.codeForm.valid) {
-      console.log('Code confirmed:', this.codeForm.value.code);
-      this.step = 'password'
+      if (this.code === Number(this.codeForm.value.code)) {
+        this.step = 'password'
+        this.isCodeValid = true
+      }
+      else {
+        this.isCodeValid = false
+      }
     }
   }
 
-  setNewPassword() {
+  async setNewPassword() {
     if (this.newPassForm.valid) {
+      await this.authService.AddOrUpdateTrainee(this.emailForm.value.email!, this.newPassForm.value.password!, '')
       try {
-        this.authService.login(this.emailForm.value.email!, this.newPassForm.value.password!);
+        await this.authService.login(this.emailForm.value.email!, this.newPassForm.value.password!);
         this.router.navigate(['/user/personal-account']);
       } catch (err: any) {
         console.error('Ошибка входа', err);
