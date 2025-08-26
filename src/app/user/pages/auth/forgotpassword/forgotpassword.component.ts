@@ -4,7 +4,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { passwordMatchValidator } from '../../../../core/validators/password-match.validator';
 import { AuthService } from '../../../../core/services/auth.service';
-import { isErrored } from 'stream';
 
 @Component({
   selector: 'app-forgotpassword',
