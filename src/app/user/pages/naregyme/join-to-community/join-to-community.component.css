@@ -1,0 +1,87 @@
+.join-community-section {
+  background: linear-gradient(135deg, #FF7A00 0%, #FF9F1A 100%);
+  color: #fff;
+  padding: 60px 0;
+}
+
+.highlight-card {
+  background: rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.25);
+}
+
+.highlight-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.highlight-desc {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Карусель */
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+}
+
+/* Индикаторы */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carousel-indicators button {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.carousel-indicators button.active {
+  background-color: #fff;
+}
+
+/* Кнопка */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF6B35;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #FF9B6B;
+  transform: translateY(-2px);
+}

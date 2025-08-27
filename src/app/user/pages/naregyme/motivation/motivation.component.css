@@ -1,0 +1,185 @@
+.motivation-section {
+    background: linear-gradient(135deg, #FF8C42 0%, #FFB97D 100%);
+    /* яркий оранжевый → мягкий коралловый */
+    color: #333;
+    /* тёмно-серый текст */
+    padding: 60px 0;
+}
+
+.offer-card {
+    background: rgba(255, 255, 255, 0.15);
+    /* полупрозрачные карточки */
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.2);
+    /* немного ярче при наведении */
+}
+
+.offer-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+    /* заголовки на карточках белые */
+}
+
+.offer-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #f5f5f5;
+    /* слегка светлый текст для контраста */
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #FF8C42;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 12px 28px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #FF8C42;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Индикаторы карусели */
+.carousel-indicators button {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-indicators button.active {
+    background-color: #fff;
+}
+
+.btn-primary {
+    display: inline-flex;
+    /* включаем flex для центрирования */
+    align-items: center;
+    /* вертикальное выравнивание */
+    justify-content: center;
+    /* горизонтальное выравнивание */
+    background-color: #FF6B35;
+    /* новый яркий коралловый цвет */
+    color: #fff;
+    /* текст белый */
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #FF9B6B;
+    /* светлее при наведении */
+    transform: translateY(-2px);
+}
+
+/* Карусель */
+.carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+}
+
+/* Индикаторы */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.carousel-indicators button {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-indicators button.active {
+    background-color: #fff;
+}
+
+/* Мотивация */
+.motivation-section {
+    background: linear-gradient(135deg, #FF8C42 0%, #FFB97D 100%);
+    color: #333;
+    padding: 60px 0;
+}
+
+.offer-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.offer-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.offer-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #f5f5f5;
+}
+
+/* Кнопка CTA */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF6B35;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #FF9B6B;
+    transform: translateY(-2px);
+}

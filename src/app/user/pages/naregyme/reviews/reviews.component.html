@@ -1,1 +1,42 @@
-<p>reviews works!</p>
+<section class="reviews-section py-5">
+  <div class="container text-center">
+    <h6 class="text-uppercase fw-bold text-muted-ink mb-2">Отзывы участников</h6>
+    <h2 class="fw-bold mb-4">Что говорят о нашем проекте</h2>
+
+    <div class="row g-4 d-none d-lg-flex">
+      <div class="col-lg-4 col-md-6" *ngFor="let review of reviews">
+        <div class="review-card p-4 h-100">
+          <p class="review-text">“{{ review.text }}”</p>
+          <div class="review-author mt-3">
+            <strong>{{ review.name }}</strong>, <span>{{ review.role }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-lg-none">
+      <div class="carousel-wrapper"
+           (touchstart)="onTouchStart($event)"
+           (touchend)="onTouchEnd($event)">
+        <div class="carousel-slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+          <div *ngFor="let review of reviews" class="carousel-slide">
+            <div class="review-card p-4 mx-auto" style="max-width: 280px;">
+              <p class="review-text">“{{ review.text }}”</p>
+              <div class="review-author mt-3">
+                <strong>{{ review.name }}</strong>, <span>{{ review.role }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-indicators position-static mt-3">
+        <button *ngFor="let r of reviews; let i = index"
+                type="button"
+                [class.active]="i === currentIndex"
+                (click)="goToSlide(i)">
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
