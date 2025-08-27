@@ -1,0 +1,43 @@
+<section class="metrics-section py-5">
+    <div class="container text-center">
+        <h6 class="text-uppercase fw-bold text-muted-ink mb-2">Метрики проекта</h6>
+        <h2 class="fw-bold mb-4">Наш общий прогресс</h2>
+
+        <!-- ===== Десктоп: 4 карточки ===== -->
+        <div class="row g-4 d-none d-lg-flex">
+            @for(metric of metrics; track $index){
+            <div class="col-lg-3">
+                <div class="metric-card text-center">
+                    <div class="metric-value">{{ metric.value }}</div>
+                    <div class="metric-unit">{{ metric.unit }}</div>
+                    <div class="metric-label">{{ metric.label }}</div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- ===== Мобилка: карусель ===== -->
+        <div class="d-lg-none">
+            <div class="carousel-wrapper" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+                <div class="carousel-slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+                    <div *ngFor="let metric of metrics" class="carousel-slide">
+                        <div class="metric-card text-center mx-auto" style="max-width: 280px;">
+                            <div class="metric-value">{{ metric.value }}</div>
+                            <div class="metric-unit">{{ metric.unit }}</div>
+                            <div class="metric-label">{{ metric.label }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Навигация -->
+            <div class="carousel-indicators position-static mt-3">
+                @for(metric of metrics; track $index){
+                <button type="button" [class.active]="$index === currentIndex" (click)="goToSlide($index)"></button>
+                }
+            </div>
+        </div>
+
+
+    </div>
+</section>

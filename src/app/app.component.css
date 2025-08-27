@@ -1,3 +1,141 @@
+* {
+    box-sizing: border-box;
+    line-height: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    text-decoration: none;
+    transition: .25s;
+}
+
+button {
+    background: transparent;
+    border: none;
+    border-radius: 2em;
+    cursor: pointer;
+    font-size: .875em;
+    font-weight: 600;
+    height: 2em;
+    letter-spacing: -.025em;
+    text-transform: uppercase;
+    transition: .25s;
+}
+
+button:hover {
+    color: white;
+}
+
+header {
+    min-height: 10vh;
+}
+
+hr.header-hr {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+p {
+    color: black;
+    font-size: .875em;
+    hyphens: auto;
+    line-height: 1.5;
+    margin: 1em 0;
+}
+
+.logo-link {
+    color: rgb(194, 192, 192);
+    font-weight: 600;
+    letter-spacing: .125em;
+    text-transform: uppercase;
+}
+
+.header-nav {
+    align-items: center;
+    flex-direction: column;
+}
+
+.header-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: .75em 0;
+}
+
+.header-menu-link {
+    color: var(--gray-color);
+    display: block;
+    font-size: .75em;
+    font-weight: 500;
+    padding: .5em .75em;
+    text-transform: uppercase;
+}
+
+.header-menu-link:hover {
+    color: var(--dark-color);
+    text-decoration: underline;
+}
+
+.ghost-button {
+    border: .125em solid gray;
+    min-width: 9em;
+    padding: 0 1em;
+}
+
+.ghost-button:hover {
+    background: var(--gray-color);
+    color: var(--light-color);
+}
+
+.sigh-out-button {
+    border: .125em solid gray;
+    color: rgb(194, 192, 192);
+    min-width: 9em;
+    padding: 0 1em;
+}
+
+.sigh-out-button:hover {
+    background: var(--gray-color);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: .25s;
+}
+
+a:hover {
+    color: white;
+}
+
+.type-button {
+    margin-top: 1.5em;
+}
+
+.type-button:after {
+    margin-left: .5em;
+    vertical-align: .0715em;
+}
+
+.login{
+    border: .125em solid gray;
+    color: rgb(194, 192, 192);
+    min-width: 9em;
+    padding: 0 1em;
+}
+
+.auth {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    p {
+        margin: 1px;
+    }
+}
+
 .header-banner-top {
     display: flex;
     flex-direction: row;
@@ -5,6 +143,10 @@
     align-items: center;
     padding: 1em;
     position: relative;
+
+    .header-p {
+        color: gray;
+    } 
 
     .primary-wrapper {
         margin: 0 auto;
@@ -15,7 +157,8 @@
         display: none;
     }
 
-    .main-navigation {}
+    .main-navigation {
+    }
 
     .horizontal-nav {
         ul {

@@ -1,1 +1,67 @@
-<p>sign-up works!</p>
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-dark">
+    <div class="register-card w-100 p-4 rounded-4 shadow-lg">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="text-center">
+            <fieldset>
+                <legend class="mb-4 text-white">Register</legend>
+
+                <!-- Name -->
+                <div class="mb-3 text-start">
+                    <label for="name" class="form-label text-white">Name</label>
+                    <input id="name" type="text" class="form-control" formControlName="name">
+                    <div class="text-danger mt-1 small" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                        <div *ngIf="form.get('name')?.errors?.['required']">Name is required.</div>
+                        <div *ngIf="form.get('name')?.errors?.['minlength']">
+                            Name must be at least 2 characters.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3 text-start">
+                    <label for="email" class="form-label text-white">Email</label>
+                    <input id="email" type="email" class="form-control" formControlName="email">
+                    <div class="text-danger mt-1 small"
+                        *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                        <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+                        <div *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email.</div>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-4 text-start">
+                    <label for="password" class="form-label text-white">Password</label>
+                    <input id="password" type="password" class="form-control" formControlName="password">
+                    <div class="text-danger mt-1 small"
+                        *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+                        <div *ngIf="form.get('password')?.errors?.['required']">Password is required.</div>
+                        <div *ngIf="form.get('password')?.errors?.['minlength']">
+                            Password must be at least 8 characters.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- password coniform -->
+                <div class="mb-3 text-start">
+                    <label for="passwordConiform" class="form-label text-white">Password coniform</label>
+                    <input id="passwordConiform" type="text" class="form-control" formControlName="passwordConiform">
+
+                    <div class="text-danger mt-1 small"
+                        *ngIf="form.get('passwordConiform')?.touched && form.get('passwordConiform')?.errors">
+                        <div *ngIf="form.get('passwordConiform')?.errors?.['required']">
+                            Password confirm is required.
+                        </div>
+                    </div>
+
+                    <div class="text-danger mt-1 small" *ngIf="form.errors?.['passwordMismatch'] 
+                            && form.get('passwordConiform')?.touched">
+                        Passwords must match.
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button class="btn btn-orange" [disabled]="!form.valid">Register</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

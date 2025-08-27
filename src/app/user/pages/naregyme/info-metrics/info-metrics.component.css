@@ -1,0 +1,66 @@
+.metric-card {
+  background: linear-gradient(135deg, #ff7a00 0%, #ff9f1a 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 28px 20px;
+  box-shadow: 0 10px 24px rgba(255, 122, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(255, 122, 0, 0.35);
+}
+
+.metric-value {
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.metric-unit {
+  font-weight: 700;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.metric-label {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+/* Индикаторы */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carousel-indicators button {
+  background-color: #ccc;
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.carousel-indicators button.active {
+  background-color: #ff7a00;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s ease; /* плавный переход */
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+}

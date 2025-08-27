@@ -1,0 +1,17 @@
+.phone-mockup {
+  max-width: 280px;
+  margin: 0 auto;
+  display: block;
+}
+
+h6 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background: #007bff;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+}

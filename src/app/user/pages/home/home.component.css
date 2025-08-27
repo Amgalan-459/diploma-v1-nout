@@ -1,67 +1,8 @@
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 90px;
-    height: 100vh;
-    background-color: gray;
-    color: white;
-    transition: width 1s ease;
-    overflow: hidden;
-    z-index: 10;
-    padding-top: 15vh;
-
-
-    &:hover {
-        width: 250px;
-    }
-
-    .menu-title {
-        height: 10vh;
-        padding: 20px;
-        font-size: 18px;
-        font-weight: bold;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .menu-items {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .menu-items li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 20px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .menu-items .label {
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-
-    &:hover .menu-items .label {
-        opacity: 1;
-    }
-
-    .menu-items li:hover {
-        background-color: rgb(92, 92, 92);
-    }
-
-    .menu-items img {
-        width: 60px;
-        height: 60px;
-    }
-}
-
 .content {
-    margin-left: 90px;
-    padding: 20px;
-    width: 100vh;
-    transition: margin-left 1s ease;
+    li{
+        padding: 20px;
+        &:nth-child(2n){
+            background-color: #eee;
+        }
+    }
 }
