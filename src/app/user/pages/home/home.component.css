@@ -1,8 +1,5 @@
-.content {
-    li{
-        padding: 20px;
-        &:nth-child(2n){
-            background-color: #eee;
-        }
+.content{
+    ul {
+        padding: 0;
     }
 }
