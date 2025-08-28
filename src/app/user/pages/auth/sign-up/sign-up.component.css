@@ -1,5 +1,6 @@
-/* Карточка будет тянуться на всю ширину экрана,
-   но при этом ограничена max-width, чтобы не растягивалась слишком сильно */
+.content {
+  height: 89.8vh;
+}
 .register-card {
   background-color: #1c1c1c;
   max-width: 500px;

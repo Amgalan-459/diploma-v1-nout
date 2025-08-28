@@ -1,0 +1,61 @@
+.coming-soon {
+    height: 89vh;
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
+    color: #222;
+}
+
+.icon {
+    font-size: 4rem;
+    animation: bounce 1.5s infinite;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #ff6a00;
+    margin-bottom: 20px;
+}
+
+.typing {
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #ff6a00;
+    width: 0;
+    animation: typing 3s steps(12, end) infinite alternate,
+        blink 0.7s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 12ch
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(-10px)
+    }
+}

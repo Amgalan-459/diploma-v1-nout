@@ -1,31 +1,44 @@
 <header class="header-banner-top">
-    <h1 class="logo"><a class="logo-link" routerLink="/home" routerLinkActive="active">NAREGYME</a></h1>
-    
-    <div class="main-navigation header-nav container flex-container horizontal-nav">
-        <input type="checkbox" name="mobile-menu-toggle" id="mobile-menu-toggle" class="mobile-menu-box" />
-        <nav class="horizontal-nav primary-wrapper" role='navigation'>
+    <h1 class="logo">
+        <a class="logo-link" routerLink="/home" routerLinkActive="active">NAREGYME</a>
+    </h1>
+
+    <div class="main-navigation header-nav container flex-container">
+        <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-box" />
+
+        <label for="mobile-menu-toggle" class="mobile-menu-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="horizontal-nav primary-wrapper" role="navigation">
             <ul class="header-menu flex-container">
                 <li><a routerLink="/recamp" routerLinkActive="active">RECAMP</a></li>
                 <li><a routerLink="/programms-and-courses" routerLinkActive="active">Программы и курсы</a></li>
-                <li><a class="header-menu-link" routerLink="/knowladge-base" routerLinkActive="active">База знаний</a></li>
-                <li><a class="header-menu-link" routerLink="/shop" routerLinkActive="active">Магазин</a></li>
+                <li><a routerLink="/knowladge-base" routerLinkActive="active">База знаний</a></li>
+                <li><a routerLink="/shop" routerLinkActive="active">Магазин</a></li>
                 <li><a routerLink="/calculators" routerLinkActive="active">Калькуляторы</a></li>
                 <li><a routerLink="/we-naregyme" routerLinkActive="active">мы #NAREGYME</a></li>
             </ul>
         </nav>
-        <label for="mobile-menu-toggle" class="mobile-menu-label hidden"></label>
     </div>
 
     @if(isLoggedIn) {
-        <div class="logged-in">
-            <p class="header-p"> <a class="lk" routerLink="/user/personal-account" routerLinkActive="active"> Hello, Amgalan </a></p>
-            <button class="ghost-button sigh-out-button" (click)="logout()">Log out</button>
-        </div>
-    }@else {
-        <div class="auth">
-            <p> <a class="login" routerLink="/auth/login" routerLinkActive="active">Login</a></p>
-            <p> <a class="login" routerLink="/auth/signup" routerLinkActive="active">Sign up</a></p>
-        </div>
+    <div class="logged-in">
+        <p class="header-p">
+            <a class="lk" routerLink="/user/personal-account" routerLinkActive="active">Hello, Amgalan</a>
+        </p>
+        <button class="ghost-button sigh-out-button" (click)="logout()">Log out</button>
+    </div>
+    } @else {
+    <div class="auth">
+        <p><a class="login" routerLink="/auth/login" routerLinkActive="active">Login</a></p>
+        <p><a class="login" routerLink="/auth/signup" routerLinkActive="active">Sign up</a></p>
+    </div>
     }
 </header>
-<router-outlet />
+
+<main>
+    <router-outlet></router-outlet>
+</main>
