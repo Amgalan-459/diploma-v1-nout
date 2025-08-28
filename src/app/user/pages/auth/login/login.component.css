@@ -1,3 +1,6 @@
+.content{
+  height: 89.8vh !important;
+}
 .login-card {
   background-color: #1c1c1c;
   max-width: 500px;

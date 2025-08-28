@@ -11,10 +11,11 @@ import { MotivationComponent } from "../naregyme/motivation/motivation.component
 import { FreqAskedQuestionsComponent } from "../naregyme/freq-asked-questions/freq-asked-questions.component";
 import { JoinToCommunityComponent } from "../naregyme/join-to-community/join-to-community.component";
 import { AuthService } from '../../../core/services/auth.service';
+import { FooterComponent } from "../../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-home',
-  imports: [AboutProjectComponent, InfoMetricsComponent, SuccessfulCasesComponent, AppComponent, ProgrammsCoursesComponent, TrainersAndExpertsComponent, ReviewsComponent, MotivationComponent, FreqAskedQuestionsComponent, JoinToCommunityComponent],
+  imports: [AboutProjectComponent, InfoMetricsComponent, SuccessfulCasesComponent, AppComponent, ProgrammsCoursesComponent, TrainersAndExpertsComponent, ReviewsComponent, MotivationComponent, FreqAskedQuestionsComponent, JoinToCommunityComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

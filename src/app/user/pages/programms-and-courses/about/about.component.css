@@ -1,0 +1,33 @@
+.container {
+    margin-bottom: 11.6vh !important;
+}
+.section-title {
+  color: #0d47a1;
+  font-weight: 700;
+}
+
+.course-card {
+  border: 2px solid #0d47a1;
+  border-radius: 15px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: #0a36a1;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #222;
+}
+
+ul li {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
