@@ -3,7 +3,6 @@
         <h6 class="text-uppercase fw-bold text-muted-ink mb-2">Станьте частью нашего сообщества</h6>
         <h2 class="fw-bold mb-4">Присоединяйтесь к клубу трансформации</h2>
 
-        <!-- Сеточная версия для десктопа -->
         <div class="row g-4 d-none d-lg-flex">
             <div class="col-lg-3 col-md-6" *ngFor="let highlight of highlights">
                 <div class="highlight-card p-4 h-100">
@@ -13,7 +12,6 @@
             </div>
         </div>
 
-        <!-- Мобилка: карусель -->
         <div class="d-lg-none">
             <div class="carousel-wrapper" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
                 <div class="carousel-slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
@@ -26,7 +24,6 @@
                 </div>
             </div>
 
-            <!-- Индикаторы -->
             <div class="carousel-indicators position-static mt-3">
                 <button *ngFor="let h of highlights; let i = index" type="button" [class.active]="i === currentIndex"
                     (click)="goToSlide(i)">

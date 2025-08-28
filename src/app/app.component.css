@@ -7,9 +7,25 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+header, main {
+    width: 100%;
+}
+
 a {
     text-decoration: none;
     transition: .25s;
+    color: var(--dark-color);
+}
+
+a:hover {
+    color: white;
 }
 
 button {
@@ -46,7 +62,7 @@ p {
     margin: 1em 0;
 }
 
-.logo-link {
+.logo {
     color: rgb(194, 192, 192);
     font-weight: 600;
     letter-spacing: .125em;
@@ -101,16 +117,6 @@ p {
     color: white;
 }
 
-a {
-    text-decoration: none;
-    color: var(--dark-color);
-    transition: .25s;
-}
-
-a:hover {
-    color: white;
-}
-
 .type-button {
     margin-top: 1.5em;
 }
@@ -120,7 +126,7 @@ a:hover {
     vertical-align: .0715em;
 }
 
-.login{
+.login {
     border: .125em solid gray;
     color: rgb(194, 192, 192);
     min-width: 9em;
@@ -131,9 +137,10 @@ a:hover {
     display: flex;
     flex-direction: row;
     width: 250px;
-    p {
-        margin: 1px;
-    }
+}
+
+.auth p {
+    margin: 1px;
 }
 
 .header-banner-top {
@@ -143,239 +150,147 @@ a:hover {
     align-items: center;
     padding: 1em;
     position: relative;
-
-    .header-p {
-        color: gray;
-    } 
-
-    .primary-wrapper {
-        margin: 0 auto;
-        max-width: 1000px;
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .main-navigation {
-    }
-
-    .horizontal-nav {
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        li {
-            display: inline-block;
-        }
-
-        a {
-            display: block;
-        }
-
-        .folder {
-
-            position: relative;
-            cursor: pointer;
-
-            ul {
-                display: block;
-                position: absolute;
-                top: -9999px;
-                left: 0;
-                z-index: 999;
-            }
-
-            li {
-                display: block;
-            }
-
-            &:hover ul {
-                top: 100%;
-            }
-
-        }
-    }
-
-    .mobile-menu-box,
-    .mobile-menu-label {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .header-banner-top {
-
-
-        .horizontal-nav {
-            overflow: hidden;
-            height: 0;
-        }
-
-        .mobile-menu-box {
-            display: none;
-        }
-
-        .mobile-menu-label {
-            display: block;
-            cursor: pointer;
-        }
-
-        .mobile-menu-label:before {
-            content: 'Menu';
-        }
-
-        .mobile-menu-box:checked {
-            ~.horizontal-nav {
-                height: auto;
-            }
-
-            ~.mobile-menu-label:before {
-                content: 'Close';
-            }
-        }
-
-        .horizontal-nav {
-
-            li {
-                display: block;
-            }
-
-
-            .folder ul {
-                position: static;
-            }
-
-            .folder-toggle-label a:before {
-                content: '+ ';
-            }
-
-            .folder-toggle-box:checked~.folder-toggle-label a:before {
-                content: '- ';
-            }
-
-            .folder:hover ul,
-            .folder-toggle-box~ul {
-                display: none;
-            }
-
-            .folder-toggle-box:checked~ul {
-                display: block;
-            }
-
-        }
-
-
-
-    }
-}
-
-
-
-
-
-
-
-.header-banner-top {
-
     background: #222;
     text-align: center;
     z-index: 11;
+}
 
-    .horizontal-nav {
-        a {
-            padding: 1.5em 1em;
-            color: #aaa;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
+.header-banner-top .header-p {
+    color: gray;
+}
 
-        a:hover,
-        .active-link a {
-            color: #fff;
-        }
+.header-banner-top .primary-wrapper {
+    margin: 0 auto;
+    max-width: 1000px;
+}
 
-        .folder {
+.header-banner-top .horizontal-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
-            ul {
-                background-color: #494949;
-                transition: padding 0.14s ease-out;
-                text-align: left;
-            }
+.header-banner-top .horizontal-nav li {
+    display: inline-block;
+}
 
-            a {
-                padding: 0.5em 1em;
-                white-space: nowrap;
-            }
+.header-banner-top .horizontal-nav a {
+    display: block;
+    padding: 1.5em 1em;
+    color: #aaa;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
 
-            &:hover ul {
-                padding: 0.5em 0;
-            }
+.header-banner-top .horizontal-nav a:hover,
+.header-banner-top .horizontal-nav .active-link a {
+    color: #fff;
+}
 
-        }
+.header-banner-top .horizontal-nav .folder {
+    position: relative;
+    cursor: pointer;
+}
 
-    }
+.header-banner-top .horizontal-nav .folder ul {
+    background-color: #494949;
+    transition: padding 0.14s ease-out;
+    text-align: left;
+    position: absolute;
+    top: -9999px;
+    left: 0;
+    z-index: 999;
+}
+
+.header-banner-top .horizontal-nav .folder:hover ul {
+    top: 100%;
+    padding: 0.5em 0;
+}
+
+.header-banner-top .horizontal-nav .folder a {
+    padding: 0.5em 1em;
+    white-space: nowrap;
+}
+
+.mobile-menu-box {
+    display: none;
+}
+
+.mobile-menu-label {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.mobile-menu-label span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 3px;
+    transition: 0.3s;
 }
 
 @media screen and (max-width: 700px) {
     .header-banner-top {
+        width: 100%;
+    }
+    .header-nav{
+        display: flex;
+        width: fit-content;
+    }
+    .auth,
+    .logged-in {
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 0.5em 1em;
+        width: fit-content;
+    }
 
-        .horizontal-nav {
-            a {
-                padding: 0.75em 1em;
-            }
+    .mobile-menu-label {
+        display: flex;
+    }
 
-            >ul>li:first-child a {
-                padding-top: 2em;
-            }
+    .horizontal-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #222;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
 
-            >ul>li:last-child a {
-                padding-bottom: 2em;
-            }
+    .mobile-menu-box:checked~nav {
+        max-height: 500px;
+    }
 
-            li {
-                display: block;
-            }
+    .mobile-menu-box:checked+.mobile-menu-label span:nth-child(1) {
+        transform: rotate(45deg) translateY(9px);
+    }
 
+    .mobile-menu-box:checked+.mobile-menu-label span:nth-child(2) {
+        opacity: 0;
+    }
 
-            .folder ul {
-                text-align: center;
-                padding: 0.5em 0;
-                margin: 0.5em 0;
-                transition: none;
-                background-color: #292929;
-            }
+    .mobile-menu-box:checked+.mobile-menu-label span:nth-child(3) {
+        transform: rotate(-45deg) translateY(-9px);
+    }
 
-            .folder:hover ul {
-                padding: 0.5em 0;
-            }
+    .header-menu {
+        flex-direction: column;
+        align-items: center;
+        padding: 1em 0;
+    }
 
-            .folder-toggle-label a {
-                cursor: pointer;
-            }
-
-        }
-
-        .mobile-menu-label {
-            background-color: #292929;
-            padding: 1.5em 1em;
-        }
-
-        .mobile-menu-box:checked~.mobile-menu-label {}
-
-        .mobile-menu-box:checked {
-            ~.horizontal-nav {
-                padding: 1em 0;
-            }
-
-            ~.mobile-menu-label:before {
-                content: 'Close';
-            }
-        }
-
+    .header-menu li {
+        margin: 0.5em 0;
     }
 }

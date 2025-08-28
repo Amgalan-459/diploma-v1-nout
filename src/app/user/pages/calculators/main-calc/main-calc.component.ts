@@ -1,14 +1,37 @@
 import { Component } from '@angular/core';
-import { BasalMetabolismComponent } from "../basal-metabolism/basal-metabolism.component";
-import { BodyFatPercentageComponent } from "../body-fat-percentage/body-fat-percentage.component";
-import { CcalDailyLoadComponent } from "../ccal-daily-load/ccal-daily-load.component";
+import { CommonModule } from '@angular/common';
+import { FooterComponent } from "../../../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-main-calc',
-  imports: [BasalMetabolismComponent, BodyFatPercentageComponent, CcalDailyLoadComponent],
+  imports: [CommonModule, FooterComponent],
   templateUrl: './main-calc.component.html',
   styleUrl: './main-calc.component.css'
 })
 export class MainCalcComponent {
+  calculators = [
+    { result: null as string | null },
+    { result: null as string | null },
+    { result: null as string | null }
+  ];
 
+  calculateBMI(height: string, weight: string, index: number) {
+    const h = parseFloat(height);
+    const w = parseFloat(weight);
+
+    if (!h || !w || h <= 0 || w <= 0) {
+      this.calculators[index].result = 'Введите корректные значения';
+      return;
+    }
+
+    const bmi = w / Math.pow(h / 100, 2);
+    let category = '';
+
+    if (bmi < 18.5) category = 'Недостаточный вес';
+    else if (bmi < 25) category = 'Норма';
+    else if (bmi < 30) category = 'Избыточный вес';
+    else category = 'Ожирение';
+
+    this.calculators[index].result = `Ваш ИМТ: ${bmi.toFixed(1)} (${category})`;
+  }
 }

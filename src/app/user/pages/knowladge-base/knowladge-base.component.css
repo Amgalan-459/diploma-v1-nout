@@ -1,0 +1,41 @@
+.card-title {
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.text-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: #0d47a1;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0a36a1;
+}
+
+.animate-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.col-md-4 .animate-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-card:hover {
+  transform: translateY(0) scale(1.03) !important;
+  transition: transform 0.3s ease !important;
+}
+
