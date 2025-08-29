@@ -22,6 +22,7 @@ import { MainWeNaregymeComponent } from './user/pages/we-naregyme/main-we-naregy
 import { MainCalcComponent } from './user/pages/calculators/main-calc/main-calc.component';
 import { ForgotpasswordComponent } from './user/pages/auth/forgotpassword/forgotpassword.component';
 import { authGuard } from './user/guards/auth.guard';
+import { NotFoundComponent } from './user/pages/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -47,5 +48,5 @@ export const routes: Routes = [
     { path: 'metrics-results/food-plan', component: FoodPlanMrComponent },
     { path: 'metrics-results/reports', component: RepotringMrComponent },
     { path: 'food-plan', component: FoodPlanComponent },
-    { path: '**', redirectTo: 'home' }
+    { path: '**', component: NotFoundComponent }
 ];
