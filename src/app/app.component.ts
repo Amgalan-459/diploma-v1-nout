@@ -9,11 +9,13 @@ import { AuthService } from './core/services/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'diploma-v1';
   router = inject(Router);
   isLoggedIn = false;
+  name = ""
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.name = authService.getName()
+  }
 
   ngOnInit(): void {
     this.authService.loggedIn$.subscribe(status => {
