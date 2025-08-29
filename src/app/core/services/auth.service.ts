@@ -26,13 +26,13 @@ export interface AuthResponse {
 export class AuthService {
   private tokenKey = 'jwt_token';
   private platformId = inject(PLATFORM_ID);
+  private user: TraineeData | null = null
 
   private loggedInSubject = new BehaviorSubject<boolean>(this.hasValidToken());
   loggedIn$ = this.loggedInSubject.asObservable();
 
   constructor(private http: HttpClient, private traineeService: TraineeService) { }
 
-  // Вход пользователя
   async login(email: string, password: string) {
     const response = await firstValueFrom(
       this.http.post<AuthResponse>(environment.apiUrl + '/api/user/login', { email, password })
@@ -40,12 +40,12 @@ export class AuthService {
 
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(this.tokenKey, response.token);
+      await this.traineeService.getTraineeByEmail(email).then(res => this.user = res)
     }
 
     this.loggedInSubject.next(true);
   }
 
-  // Выход
   logout(): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem(this.tokenKey);
@@ -53,13 +53,11 @@ export class AuthService {
     this.loggedInSubject.next(false);
   }
 
-  // Получаем токен
   getToken(): string | null {
     if (!isPlatformBrowser(this.platformId)) return null;
     return localStorage.getItem(this.tokenKey);
   }
 
-  // Проверка токена на валидность
   private hasValidToken(): boolean {
     const token = this.getToken();
     if (!token) return false;
@@ -73,7 +71,6 @@ export class AuthService {
     }
   }
 
-  // Получение роли пользователя при необходимости
   getUserRole(): string | null {
     const token = this.getToken();
     if (!token) return null;
@@ -101,6 +98,14 @@ export class AuthService {
       throw new Error('Not stated email')
     }
     return await firstValueFrom(this.http.post<number>(environment.apiUrl + '/api/forgetpassword/' + email, null));
+  }
+
+  getUser() {
+    return this.user
+  }
+
+  getName(){
+    return this.user?.name!;
   }
 
   async AddOrUpdateTrainee(emailUser: string, passwordUser: string, nameUser: string): Promise<TraineeData> {

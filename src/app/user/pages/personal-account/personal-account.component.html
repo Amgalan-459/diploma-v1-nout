@@ -1,58 +1,25 @@
-<div class="sidebar">
+<div class="sidebar" (mouseleave)="closeAllDrops()">
     <ul class="menu-items">
-        <li (click)="onClickDrop($event, 0)">
-            <img src="/images/education-cap-svgrepo-com.svg" alt="academy">
-            <span class="label">Онлайн академия</span>
+        <li *ngFor="let item of menu; let i = index" (click)="onClickDrop($event, i)">
+            <img [src]="item.icon" [alt]="item.label">
+            <span class="label">{{ item.label }}</span>
+
             <div class="dropside addictional" #dropside>
                 <ul class="menu-items">
-                    <li><a href="#">Доступные курсы</a></li>
-                    <li><a href="#">База знаний - библиотека</a></li>
-                    <li><a href="#">Другие курсы к покупке</a></li>
-                </ul>
-            </div>
-        </li>
-        <li (click)="onClickDrop($event, 1)">
-            <img src="/images/rehabilitation-training.svg" alt="traines">
-            <span class="label">Тренировочный план</span>
-            <div class="dropside addictional" #dropside>
-                <ul class="menu-items">
-                    <li><a href="#">Программы и курсы</a></li>
-                    <li><a href="#">Тип Тренировок</a></li>
-                </ul>
-            </div>
-        </li>
-        <li (click)="onClickDrop($event, 2)">
-            <img src="/images/result-svgrepo-com.svg" alt="results">
-            <span class="label">Метрики/Результаты</span>
-            <div class="dropside addictional" #dropside>
-                <ul class="menu-items">
-                    <li><a href="#">Академия</a></li>
-                    <li><a href="#">База</a></li>
-                    <li><a href="#">План питания</a></li>
-                    <li><a href="#">Тренировочный план</a></li>
-                    <li><a href="#">Отчетность</a></li>
-                </ul>
-            </div>
-        </li>
-        <li (click)="onClickDrop($event, 3)">
-            <img src="/images/food-351.svg" alt="food">
-            <span class="label">План питания</span>
-            <div class="dropside addictional" #dropside>
-                <ul class="menu-items">
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                </ul>
-            </div>
-        </li>
-        <li (click)="onClickDrop($event, 4)">
-            <img src="/images/report-28.svg" alt="reports">
-            <span class="label">Отчетность - Анкета</span>
-            <div class="dropside addictional" #dropside>
-                <ul class="menu-items">
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
+                    <li *ngFor="let child of item.children; let j = index"
+                        (click)="child.subChildren ? onClickSubDrop($event, j) : null" class="menu-item">
+                        <!-- <a [routerLink]="child.link">{{ child.label }}</a> -->
+                        <span class="label">{{ child.label }}</span>
+
+                        <div class="sub-dropside" #subdropside>
+                            <ul>
+                                <li *ngFor="let sub of child.subChildren" class="menu-item">
+                                    <a [routerLink]="sub.link">{{ sub.label }}</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
                 </ul>
             </div>
         </li>
@@ -60,5 +27,213 @@
 </div>
 
 <div class="content">
-    <p style="height: 2000px;">text</p>
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            <h5 class="my-3">{{ user?.name + " " + user?.surname}}</h5>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ user?.name + " " + user?.surname}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ user?.email}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Phone</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user?.phoneNumber}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Count of trains</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user?.countOfTrainsInWeek}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Пол</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    @if (user?.sex == 0){
+                                    <p class="text-muted mb-0">Не указано</p>
+                                    }
+                                    @else if (user?.sex == 1) {
+                                    <p class="text-muted mb-0">Мужской</p>
+                                    }
+                                    @else {
+                                    <p class="text-muted mb-0">Женский</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Рост</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">175</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Противопоказания</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">Плоскостопие 3 ст.</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Ограничения</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">Нельзя давать больште нагрузки на колено</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Норма шагов</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">от 10000 до 15000 в день</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Уровень физ подготовки</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">Тренированный(регулярные занятия спортом более 2 раза в
+                                        неделю больше года)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4 mb-md-0">
+                                <div class="card-body">
+                                    <p class="mb-4"> Анализ тела </p>
+                                    <p class="mb-1" style="font-size: .77rem;">ИМТ</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 70%"
+                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Вес</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 72%"
+                                            aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Процент жира</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 20%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Процент мышц</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 72%"
+                                            aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Обхват левого бедра</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 72%"
+                                            aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Oбхват правого бедра</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 70%"
+                                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Обхват талии</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 55%"
+                                            aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Обхват плеч</p>
+                                    <div class="progress rounded mb-2" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 66%"
+                                            aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Обхват груди</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 75%"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4 mb-md-0">
+                                <div class="card-body">
+                                    <p class="mb-4">Статистика</p>
+                                    <p class="mb-1" style="font-size: .77rem;">Посещаемость тренировок</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 80%"
+                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Выполненение план</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 72%"
+                                            aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Работа с весами</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 89%"
+                                            aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 55%"
+                                            aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                                    <div class="progress rounded mb-2" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 1%" aria-valuenow="1"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

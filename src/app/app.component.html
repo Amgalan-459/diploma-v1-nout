@@ -27,7 +27,7 @@
     @if(isLoggedIn) {
     <div class="logged-in">
         <p class="header-p">
-            <a class="lk" routerLink="/user/personal-account" routerLinkActive="active">Hello, Amgalan</a>
+            <a class="lk" routerLink="/user/personal-account" routerLinkActive="active">Hello, {{name}}</a>
         </p>
         <button class="ghost-button sigh-out-button" (click)="logout()">Log out</button>
     </div>
