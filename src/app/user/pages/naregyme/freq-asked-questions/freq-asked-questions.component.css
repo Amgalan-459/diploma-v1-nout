@@ -29,7 +29,6 @@
   color: #666;
 }
 
-/* Карусель */
 .carousel-wrapper {
   overflow: hidden;
   width: 100%;
@@ -44,7 +43,6 @@
   flex: 0 0 100%;
 }
 
-/* Индикаторы */
 .carousel-indicators {
   display: flex;
   justify-content: center;
