@@ -24,6 +24,7 @@ import { ForgotpasswordComponent } from './user/pages/auth/forgotpassword/forgot
 import { authGuard } from './user/guards/auth.guard';
 import { NotFoundComponent } from './user/pages/not-found/not-found.component';
 import { KnowladgeBaseMoreComponent } from './user/pages/knowladge-base-d/knowladge-base-more/knowladge-base-more.component';
+import { RenderMode } from '@angular/ssr';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,7 +35,7 @@ export const routes: Routes = [
     { path: 'recamp', component: MainRecampComponent },
     { path: 'programms-and-courses', component: AboutComponent },
     { path: 'knowladge-base', component: KnowladgeBaseComponent },
-    { path: 'knowladge-base/:knowladgeBaseId', component: KnowladgeBaseMoreComponent},
+    { path: 'knowladge-base/:knowladgeBaseId', component: KnowladgeBaseMoreComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'calculators', component: MainCalcComponent },
     { path: 'we-naregyme', component: MainWeNaregymeComponent },
