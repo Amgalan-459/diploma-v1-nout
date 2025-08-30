@@ -8,7 +8,7 @@ import { KnowladgeService } from '../../../../core/services/knowladge.service';
 
 @Component({
   selector: 'app-knowladge-base',
-  imports: [RouterLink, CommonModule, FooterComponent, RouterLinkActive],
+  imports: [RouterLink, CommonModule, FooterComponent],
   templateUrl: './knowladge-base.component.html',
   styleUrl: './knowladge-base.component.css'
 })
