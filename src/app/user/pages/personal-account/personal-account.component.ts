@@ -3,6 +3,7 @@ import { Component, ElementRef, HostListener, QueryList, ViewChild, ViewChildren
 import { RouterLink } from '@angular/router';
 import { TraineeData } from '../../../core/interfaces/trainee-data';
 import { AuthService } from '../../../core/services/auth.service';
+import { TraineeService } from '../../../core/services/trainee.service';
 
 interface MenuItem {
   label: string;
@@ -29,7 +30,7 @@ export class PersonalAccountComponent {
         {
           label: 'Доступные курсы', link: '/academy/available',
           subChildren: [
-            { label: 'купленные курсы', link: '/academy/js' },
+            { label: 'купленные курсы', link: '/academy/available' },
           ]
         },
         {
@@ -50,44 +51,52 @@ export class PersonalAccountComponent {
       label: 'Тренировочный план',
       icon: '/images/rehabilitation-training.svg',
       children: [
-        { label: 'Программы и курсы', link: '/training/programs', subChildren: [
+        {
+          label: 'Программы и курсы', link: '/training/programs', subChildren: [
             { label: 'RECOMPOSITION', link: '/academy/js' },
             { label: 'Курс - Набор мышечной массы', link: '/academy/angular' },
             { label: 'Курсы для прохождения', link: '/academy/angular' }
-          ] },
-        { label: 'Тип тренировок', link: '/training/types', subChildren: [
+          ]
+        },
+        {
+          label: 'Тип тренировок', link: '/training/types', subChildren: [
             { label: 'Силовые', link: '/academy/js' },
             { label: 'Кардио', link: '/academy/angular' }
-          ] }
+          ]
+        }
       ]
     },
     {
       label: 'Метрики/Результаты',
       icon: '/images/result-svgrepo-com.svg',
       children: [
-        { label: 'База', link: '/results/academy', subChildren: [
+        {
+          label: 'База', link: '/results/academy', subChildren: [
             { label: 'Основные данные об атлете', link: '/academy/js' },
             { label: 'Достижения', link: '/academy/angular' },
             { label: 'Текущий этап - цели', link: '/academy/angular' },
             { label: 'Трансформация ДО/ПОСЛЕ', link: '/academy/angular' },
             { label: 'Результативность - метрики', link: '/academy/angular' },
-          ] 
+          ]
         },
-        { label: 'Академия', link: '/results/academy', subChildren: [
+        {
+          label: 'Академия', link: '/results/academy', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками результативности', link: '/academy/js' },
-          ] 
+          ]
         },
-        { label: 'Тренировочный план', link: '/results/academy', subChildren: [
+        {
+          label: 'Тренировочный план', link: '/results/academy', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками соблюдения тренировочного плана', link: '/academy/js' },
-          ] 
+          ]
         },
-        { label: 'План питания', link: '/results/academy', subChildren: [
+        {
+          label: 'План питания', link: '/results/academy', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками соблюдения плана питания', link: '/academy/js' },
-          ] 
+          ]
         },
         {
           label: 'Отчетность', link: '', subChildren: [
-            { label: 'завершенные и текущие курсы / цикли / программы с метриками соблюдения отчетности', link: ''}
+            { label: 'завершенные и текущие курсы / цикли / программы с метриками соблюдения отчетности', link: '' }
           ]
         }
       ]
@@ -112,8 +121,10 @@ export class PersonalAccountComponent {
 
   activeIndex: number | null = null;
   activeSubIndex: number | null = null;
+  editMode = false;
+  editUser: any = {};
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private traineeService: TraineeService) {
     this.user = authService.getUser()
   }
 
@@ -155,12 +166,12 @@ export class PersonalAccountComponent {
       const sdsEl = dsEl.children[0].children[index].children[1]
 
       this.subdropside.forEach((sds, i) => {
-        if (i !== index){
+        if (i !== index) {
           sds.nativeElement.classList.remove("show")
         }
       });
 
-      if (sdsEl){
+      if (sdsEl) {
         sdsEl.style.paddingTop = `${target.offsetTop}px`;
         sdsEl.classList.toggle("show")
       }
@@ -180,4 +191,32 @@ export class PersonalAccountComponent {
     }
   }
 
+  enableEdit() {
+    this.editUser = { ...this.user };
+    this.editMode = true;
+  }
+
+  cancelEdit() {
+    this.editMode = false;
+    this.editUser = {};
+  }
+
+  async saveChanges() {
+    await this.traineeService.postTrainee((this.editUser as TraineeData)).then(res => {
+      
+    })
+
+    this.user = { ...this.editUser };
+    this.editMode = false;
+  }
+
+  onInputChange(field: string, event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.editUser[field] = target.value;
+  }
+
+  onSelectChange(field: string, event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.editUser[field] = +target.value;
+  }
 }
