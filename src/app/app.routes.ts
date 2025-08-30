@@ -4,7 +4,7 @@ import { LoginComponent } from './user/pages/auth/login/login.component';
 import { SignUpComponent } from './user/pages/auth/sign-up/sign-up.component';
 import { ProgrammsCoursesComponent } from './user/pages/naregyme/programms-courses/programms-courses.component';
 import { AboutComponent } from './user/pages/programms-and-courses/about/about.component';
-import { KnowladgeBaseComponent } from './user/pages/knowladge-base/knowladge-base.component';
+import { KnowladgeBaseComponent } from './user/pages/knowladge-base-d/knowladge-base/knowladge-base.component';
 import { ShopComponent } from './user/pages/shop/shop.component';
 import { PersonalAccountComponent } from './user/pages/personal-account/personal-account.component';
 import { AvailableCoursesComponent } from './user/pages/sibebar/online-academy/available-courses/available-courses.component';
@@ -23,6 +23,7 @@ import { MainCalcComponent } from './user/pages/calculators/main-calc/main-calc.
 import { ForgotpasswordComponent } from './user/pages/auth/forgotpassword/forgotpassword.component';
 import { authGuard } from './user/guards/auth.guard';
 import { NotFoundComponent } from './user/pages/not-found/not-found.component';
+import { KnowladgeBaseMoreComponent } from './user/pages/knowladge-base-d/knowladge-base-more/knowladge-base-more.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,6 +34,7 @@ export const routes: Routes = [
     { path: 'recamp', component: MainRecampComponent },
     { path: 'programms-and-courses', component: AboutComponent },
     { path: 'knowladge-base', component: KnowladgeBaseComponent },
+    { path: 'knowladge-base/:knowladgeBaseId', component: KnowladgeBaseMoreComponent},
     { path: 'shop', component: ShopComponent },
     { path: 'calculators', component: MainCalcComponent },
     { path: 'we-naregyme', component: MainWeNaregymeComponent },
