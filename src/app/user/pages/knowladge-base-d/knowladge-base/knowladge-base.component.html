@@ -34,7 +34,7 @@
                     <p class="card-text"><strong>Тема:</strong> {{item.topic}}</p>
                     <p class="card-text"><strong>Тип:</strong> {{item.type | titlecase}}</p>
                     <p class="card-text text-truncate">{{item.description}}</p>
-                    <a routerLink="/knowladge-base/{{item.id}}" class="btn btn-primary mt-auto">Подробнее</a>
+                    <a [routerLink]="['/knowladge-base', item.id]" routerLinkActive="true" class="btn btn-primary mt-auto">Подробнее</a>
                 </div>
             </div>
         </div>
