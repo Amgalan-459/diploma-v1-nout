@@ -6,7 +6,6 @@ import { environment } from '../../../environments/environment.development';
 import { jwtDecode } from 'jwt-decode';
 import { isPlatformBrowser } from '@angular/common';
 import { TraineeData } from '../interfaces/trainee-data';
-import { env } from 'process';
 import { TraineeService } from './trainee.service';
 
 export interface JwtPayload {
