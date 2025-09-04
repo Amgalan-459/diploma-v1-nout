@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://95.165.74.42:tut-port'
+    apiUrl: 'https://diplomaserver-test-docker-v1.onrender.com/'
 };
