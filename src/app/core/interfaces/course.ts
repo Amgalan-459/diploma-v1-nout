@@ -7,5 +7,4 @@ export interface Course {
     type: string;
     image: string;
     isBuyed: boolean;
-    ModuleIds: number[]
 }

@@ -4,5 +4,6 @@ export interface Lesson {
     completed: boolean,
     videoUrl: string | null,
     content: string,
-    isAvailable: boolean
+    isAvailable: boolean,
+    moduleId: number
 }

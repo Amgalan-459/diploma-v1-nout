@@ -1,5 +1,4 @@
 <div class="course-player">
-    <!-- Sidebar -->
     <aside class="sidebar">
         <h3 class="sidebar-title">{{ courseTitle }}</h3>
         <div class="student">
@@ -17,7 +16,6 @@
                     <span class="progress-count">{{ moduleProgress(module) }}</span>
                 </div>
 
-                <!-- Прогресс бар -->
                 <div class="module-progress">
                     <div class="progress-bar" [style.width.%]="moduleProgressPercent(module)">
                     </div>
@@ -39,7 +37,6 @@
         </ul>
     </aside>
 
-    <!-- Main Content -->
     <main class="content">
         <header class="content-header">
             <h1>{{ activeLesson?.title }}</h1>

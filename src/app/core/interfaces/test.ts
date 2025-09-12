@@ -3,5 +3,6 @@ export interface Test {
     title: string,
     isCompleted: boolean,
     url: string,
-    isAvailable: boolean
+    isAvailable: boolean,
+    moduleId: number
 }

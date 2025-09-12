@@ -11,7 +11,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class CoursesComponent {
   courseTitle = 'Полный видеогайд по тревоге.';
   student = {
-    name: 'Tolya Alexxandrov'
+    name: 'Tolya Alexandrov'
   };
 
   modules = [
