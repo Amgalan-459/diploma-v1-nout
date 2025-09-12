@@ -24,6 +24,7 @@ import { ForgotpasswordComponent } from './user/pages/auth/forgotpassword/forgot
 import { authGuard } from './user/guards/auth.guard';
 import { NotFoundComponent } from './user/pages/not-found/not-found.component';
 import { KnowladgeBaseMoreComponent } from './user/pages/knowladge-base-d/knowladge-base-more/knowladge-base-more.component';
+import { CoursesComponent } from './user/pages/lk/courses/courses.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,6 +41,7 @@ export const routes: Routes = [
     { path: 'we-naregyme', component: MainWeNaregymeComponent },
     { path: 'user/personal-account', component: PersonalAccountComponent, canActivate: [authGuard] },
     { path: 'online-academy/available-courses', component: AvailableCoursesComponent },
+    { path: 'online-academy/available-courses/aboba', component: CoursesComponent },
     { path: 'online-academy/other-courses', component: OtherCoursesToBuyComponent },
     { path: 'online-academy/knowladge-base', component: KnowladgeBaseLibraryComponent },
     { path: 'training-plan/programms-courses', component: ProgrammsCoursesComponent },

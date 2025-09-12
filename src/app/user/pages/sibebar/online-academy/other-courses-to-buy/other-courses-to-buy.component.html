@@ -1,1 +1,28 @@
-<p>other-courses-to-buy works!</p>
+<div class="courses-page">
+  <div class="filter-bar">
+    <label for="filter">Фильтр:</label>
+    <select id="filter" (change)="onFilterChange($event)">
+      <option value="all">Все</option>
+      <option value="fitness">Фитнес</option>
+      <option value="nutrition">Питание</option>
+    </select>
+  </div>
+
+  <div class="courses-grid">
+    <div class="course-card" *ngFor="let course of filteredCourses">
+      <div class="course-image">
+        <img [src]="course.image" alt="{{ course.title }}">
+      </div>
+      <div class="course-body">
+        <h3 class="course-title">{{ course.title }}</h3>
+        <p class="course-author">{{ course.author }}</p>
+        <div class="course-footer">
+          <div class="course-rating">
+            <span class="star">★</span>
+            <span>{{ course.rating }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

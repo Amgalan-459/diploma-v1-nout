@@ -13,7 +13,7 @@
 
                         <div class="sub-dropside" #subdropside>
                             <ul>
-                                <li *ngFor="let sub of child.subChildren" class="menu-item">
+                                <li *ngFor="let sub of child.subChildren" class="menu-item" (click)="openCalendar(sub)">
                                     <a [routerLink]="sub.link">{{ sub.label }}</a>
                                 </li>
                             </ul>
@@ -27,6 +27,27 @@
 </div>
 
 <div class="content">
+    <ng-container *ngIf="showCalendar">
+        <div class="calendar-overlay" (click)="closeCalendar($event)">
+            <div class="calendar-window" (click)="$event.stopPropagation()">
+                <button class="close-btn" (click)="closeCalendar($event)">✕</button>
+                <h2>ТРЕНИРОВОЧНЫЙ КАЛЕНДАРЬ {{ currentYear }}</h2>
+                <div class="months">
+                    <div *ngFor="let month of months" class="month">
+                        <h3>{{ month.name }}</h3>
+                        <div class="days">
+                            <a *ngFor="let day of month.days"
+                                [routerLink]="['/calendar', currentYear + '-' + month.num + '-' + day]">
+                                {{ day }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    
+
     <section style="background-color: #eee;">
         <div class="container py-5">
             <div class="row">
@@ -65,8 +86,8 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0" *ngIf="!editMode">{{ user?.email }}</p>
-                                    <input *ngIf="editMode" type="text" [value]="editUser.email" (input)="onInputChange('email', $event)"
-                                        class="form-control mb-2">
+                                    <input *ngIf="editMode" type="text" [value]="editUser.email"
+                                        (input)="onInputChange('email', $event)" class="form-control mb-2">
                                 </div>
                             </div>
                             <hr>
@@ -93,8 +114,8 @@
                                         <p class="text-muted mb-0" *ngIf="user?.sex == 1">Мужской</p>
                                         <p class="text-muted mb-0" *ngIf="user?.sex == 2">Женский</p>
                                     </ng-container>
-                                    <select *ngIf="editMode" [value]="editUser.sex" (change)="onSelectChange('sex', $event)"
-                                        class="form-control">
+                                    <select *ngIf="editMode" [value]="editUser.sex"
+                                        (change)="onSelectChange('sex', $event)" class="form-control">
                                         <option [value]="0">Не указано</option>
                                         <option [value]="1">Мужской</option>
                                         <option [value]="2">Женский</option>
