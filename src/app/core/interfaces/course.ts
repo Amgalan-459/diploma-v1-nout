@@ -7,5 +7,6 @@ export interface Course {
     type: string,
     image: string,
     isBuyed: boolean,
-    instructions: string
+    instructions: string,
+    isAvaibale: boolean
 }

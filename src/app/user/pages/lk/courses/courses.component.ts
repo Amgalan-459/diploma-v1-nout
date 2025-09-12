@@ -13,6 +13,7 @@ export class CoursesComponent {
   student = {
     name: 'Tolya Alexandrov'
   };
+  //бд шифрование todo
 
   modules = [
     {
