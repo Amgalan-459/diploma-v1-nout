@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 90px;
+    width: 70px;
     height: 100vh;
     background-color: #1a1a1a;
     color: white;
@@ -95,7 +95,7 @@
     left: 510px;
     width: 350px;
     height: 100vh;
-    background-color: #E5FF00;
+    background-color: #bdbdbd;
     color: black;
     z-index: 30;
     overflow-y: auto;
