@@ -27,8 +27,16 @@ export class CourseService {
     return await firstValueFrom(this.http.get<Course>(environment.apiUrl + '/api/available/course/' + id));
   }
 
+  async getCoursesByUserId(userId: number): Promise<Course[]> {
+    return await firstValueFrom(this.http.get<Course[]>(environment.apiUrl + '/api/course/user/' + userId));
+  }
+
   async postCourse(course: Course): Promise<Course> {
     return await firstValueFrom(this.http.post<Course>(environment.apiUrl + '/api/course', course));
+  }
+
+  async purshuaseCourse(userId: number, course: Course): Promise<Course> {
+    return await firstValueFrom(this.http.post<Course>(environment.apiUrl + '/api/purshuasecourse/' + userId, course));
   }
 
   async deleteCourse(id: number): Promise<Course> {

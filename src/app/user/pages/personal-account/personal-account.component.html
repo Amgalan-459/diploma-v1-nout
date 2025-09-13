@@ -8,8 +8,11 @@
                 <ul class="menu-items">
                     <li *ngFor="let child of item.children; let j = index"
                         (click)="child.subChildren ? onClickSubDrop($event, j) : null" class="menu-item">
-                        <!-- <a [routerLink]="child.link">{{ child.label }}</a> -->
-                        <span class="label">{{ child.label }}</span>
+                        @if(child.link){
+                            <a class="label" [routerLink]="child.link">{{ child.label }}</a>
+                        } @else {
+                            <span class="label">{{ child.label }}</span>
+                        }
 
                         <div class="sub-dropside" #subdropside>
                             <ul>

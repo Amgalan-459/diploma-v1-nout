@@ -58,6 +58,14 @@
   gap: 8px;
 }
 
+.ghost-button{
+  background-color: #dfff00;
+}
+
+.ghost-button:hover {
+  background-color: #ddff009d;
+}
+
 .course-title {
   font-size: 18px;
   font-weight: bold;

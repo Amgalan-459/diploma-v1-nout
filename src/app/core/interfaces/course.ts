@@ -8,5 +8,7 @@ export interface Course {
     image: string,
     isBuyed: boolean,
     instructions: string,
-    isAvaibale: boolean
+    isAvaibale: boolean,
+    trainerId: number,
+    userId: number
 }

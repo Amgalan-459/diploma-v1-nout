@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FooterComponent } from "../../../../core/components/footer/footer.component";
 import { Knowladgebase } from '../../../../core/interfaces/knowladgebase';
 import { KnowladgeService } from '../../../../core/services/knowladge.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 
 @Component({
@@ -23,9 +24,16 @@ export class KnowladgeBaseComponent {
   types: Set<string> = new Set();
 
   knowladgeItems: Knowladgebase[] | null = null;
+  favs: boolean[] | null = null;
 
-  constructor(private knowlodagebaseService: KnowladgeService) {
+  isLoggedIn: boolean = false;
+
+  constructor(private knowlodagebaseService: KnowladgeService, private authService: AuthService) {
+    this.isLoggedIn = authService.isLoggedIn()
     knowlodagebaseService.getAllKnowladgebases().then(res => {
+      if (!res){
+        alert("ошибка заполнения")
+      }
       this.knowladgeItems = res;
       this.knowladgeItems.forEach(i => {
         this.topics.add(i.topic)
@@ -64,4 +72,11 @@ export class KnowladgeBaseComponent {
     this.filterType = select.value;
   }
 
+  toggleFavorite(item: any) {
+    // Заготовка: переворот состояния
+    item.isFavorite = !item.isFavorite;
+
+    // TODO: сохранить в сервис избранного или localStorage
+    // this.favoriteService.toggle(item.id);
+  }
 }

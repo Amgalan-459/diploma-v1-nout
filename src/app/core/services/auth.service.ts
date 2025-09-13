@@ -30,6 +30,9 @@ export class AuthService {
   private loggedInSubject = new BehaviorSubject<boolean>(this.hasValidToken());
   loggedIn$ = this.loggedInSubject.asObservable();
 
+  private nameSubject = new BehaviorSubject<string>(this.getName());
+  name$ = this.nameSubject.asObservable();
+
   constructor(private http: HttpClient, private traineeService: TraineeService) { }
 
   async login(email: string, password: string) {

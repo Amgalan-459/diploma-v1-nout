@@ -4,6 +4,8 @@ import { RouterLink } from '@angular/router';
 import { TraineeData } from '../../../core/interfaces/trainee-data';
 import { AuthService } from '../../../core/services/auth.service';
 import { TraineeService } from '../../../core/services/trainee.service';
+import { CourseService } from '../../../core/services/course.service';
+import { Course } from '../../../core/interfaces/course';
 
 interface MenuItem {
   label: string;
@@ -28,20 +30,18 @@ export class PersonalAccountComponent {
       icon: '/sidebar/Gym.svg',
       children: [
         {
-          label: 'Доступные курсы', link: '/academy/available',
+          label: 'Доступные курсы', link: '/online-academy/available-courses',
           subChildren: [
             { label: 'купленные курсы', link: '/online-academy/available-courses' },
           ]
         },
         {
-          label: 'Другие курсы к покупке', link: '/academy/other', subChildren: [
+          label: 'Другие курсы к покупке', link: '', subChildren: [
             { label: 'все', link: '/online-academy/other-courses' },
-            { label: 'RECOMPOSITION', link: '/online-academy/available-courses/RECOMPOSITION' },
-            { label: 'парсятся типы и заполняются', link: 'online-academy/available-courses/other' }
           ]
         },
         {
-          label: 'База знаний', link: '/academy/library', subChildren: [
+          label: 'База знаний', link: '', subChildren: [
             { label: 'парсятся типы и заполняются', link: '/online-academy/knowladge-base' }
           ]
         }
@@ -52,14 +52,14 @@ export class PersonalAccountComponent {
       icon: '/sidebar/Gym Calendar.svg',
       children: [
         {
-          label: 'Программы и курсы', link: '/training/programs', subChildren: [
+          label: 'Программы и курсы', link: '', subChildren: [
             { label: 'RECOMPOSITION', link: '/academy/js' },
             { label: 'Курс - Набор мышечной массы', link: '/academy/angular' },
             { label: 'Курсы для прохождения', link: '/academy/angular' }
           ]
         },
         {
-          label: 'Тип тренировок', link: '/training/types', subChildren: [
+          label: 'Тип тренировок', link: '', subChildren: [
             { label: 'Силовые', link: '/academy/js' },
             { label: 'Кардио', link: '/academy/angular' }
           ]
@@ -71,7 +71,7 @@ export class PersonalAccountComponent {
       icon: '/sidebar/Measuring Tape.svg',
       children: [
         {
-          label: 'База', link: '/results/academy', subChildren: [
+          label: 'База', link: '', subChildren: [
             { label: 'Основные данные об атлете', link: '/academy/js' },
             { label: 'Достижения', link: '/academy/angular' },
             { label: 'Текущий этап - цели', link: '/academy/angular' },
@@ -80,17 +80,17 @@ export class PersonalAccountComponent {
           ]
         },
         {
-          label: 'Академия', link: '/results/academy', subChildren: [
+          label: 'Академия', link: '', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками результативности', link: '/academy/js' },
           ]
         },
         {
-          label: 'Тренировочный план', link: '/results/academy', subChildren: [
+          label: 'Тренировочный план', link: '', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками соблюдения тренировочного плана', link: '/academy/js' },
           ]
         },
         {
-          label: 'План питания', link: '/results/academy', subChildren: [
+          label: 'План питания', link: '', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками соблюдения плана питания', link: '/academy/js' },
           ]
         },
@@ -119,38 +119,6 @@ export class PersonalAccountComponent {
     }
   ];
 
-  courses = [
-    {
-      title: 'Инструкции пользования сервисом',
-      author: 'Анатолий Александров',
-      rating: 5.0,
-      progressText: 'Пройдено - 100%',
-      image: '/assets/course1.png'
-    },
-    {
-      title: 'Силовой цикл - 12 недель',
-      author: 'Сергей Рузанщиков',
-      rating: 4.5,
-      progressText: 'Пройдено - 100%',
-      image: '/assets/course2.png'
-    },
-    {
-      title: 'Мобильность и МФР',
-      author: 'Ангалат Борголоев',
-      rating: 4.5,
-      progressText: 'В работе - 35%',
-      image: '/assets/course3.png'
-    },
-    {
-      title: 'Функциональный тренинг',
-      author: 'Василий Кушнаренко',
-      rating: 4.5,
-      progressText: 'Пройдено - 0%',
-      image: '/assets/course4.png'
-    }
-  ];
-
-
   showCalendar = false;
   currentYear = new Date().getFullYear();
   months = [
@@ -173,8 +141,24 @@ export class PersonalAccountComponent {
   editMode = false;
   editUser: any = {};
 
-  constructor(private authService: AuthService, private traineeService: TraineeService) {
+  constructor(private authService: AuthService, private traineeService: TraineeService, courseService: CourseService) {
     this.user = authService.getUser()
+    courseService.getAllAvailableCourses().then(res =>{
+      for(let course of res){
+        if (course.isBuyed && course.userId == this.user?.id){
+          this.menu[0].children?.[0].subChildren?.push({
+            label: course.title + course.progressText,
+            link: '/online-academy/available-courses'
+          })
+        }
+        else if(course.userId == 0) {
+          this.menu[0].children?.[1].subChildren?.push({
+            label: course.title + course.progressText,
+            link: '/online-academy/available-courses'
+          })
+        }
+      }
+    })
   }
 
   openCalendar(sub: any) {
@@ -210,7 +194,7 @@ export class PersonalAccountComponent {
         }
       });
       if (dsEl) {
-        dsEl.style.paddingTop = `${target.offsetTop}px`;
+        dsEl.style.paddingTop = `${target.offsetTop - 100}px`;
         dsEl.classList.toggle("show")
       }
     }

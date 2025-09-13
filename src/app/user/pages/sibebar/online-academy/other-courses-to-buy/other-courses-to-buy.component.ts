@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Course } from '../../../../../core/interfaces/course';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../../../core/services/auth.service';
+import { CourseService } from '../../../../../core/services/course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-other-courses-to-buy',
@@ -21,7 +24,10 @@ export class OtherCoursesToBuyComponent {
       type: 'fitness',
       image: '/assets/images/course1.jpg',
       isBuyed: false,
-      ModuleIds: []
+      instructions: 'inst',
+      isAvaibale: true,
+      trainerId: 1,
+      userId: 1
     },
     {
       id: 5,
@@ -32,7 +38,10 @@ export class OtherCoursesToBuyComponent {
       type: 'nutrition',
       image: '/assets/images/course2.jpg',
       isBuyed: false,
-      ModuleIds: []
+      instructions: 'inst',
+      isAvaibale: true,
+      trainerId: 1,
+      userId: 1
     },
     {
       id: 6,
@@ -43,9 +52,14 @@ export class OtherCoursesToBuyComponent {
       type: 'fitness',
       image: '/assets/images/course3.jpg',
       isBuyed: false,
-      ModuleIds: []
+      instructions: 'inst',
+      isAvaibale: true,
+      trainerId: 1,
+      userId: 1
     }
   ];
+
+  constructor(private courseService: CourseService,private authService: AuthService, private router: Router) { }
 
   get filteredCourses() {
     if (this.selectedType === 'all') {
@@ -56,5 +70,14 @@ export class OtherCoursesToBuyComponent {
 
   onFilterChange(event: Event) {
     this.selectedType = (event.target as HTMLSelectElement).value;
+  }
+
+  async buyCourse(course: Course) {
+    await this.courseService.purshuaseCourse(this.authService.getUser()?.id || 1, course).then(res => {
+      if (!res){
+        alert("Ошибка при покупке модуля")
+      }
+    })
+    this.router.navigate(['/online-academy/available-courses'])
   }
 }

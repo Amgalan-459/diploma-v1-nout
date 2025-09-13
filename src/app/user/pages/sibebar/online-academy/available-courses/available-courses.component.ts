@@ -22,7 +22,10 @@ export class AvailableCoursesComponent {
       type: 'fitness',
       image: '/assets/images/course1.jpg',
       isBuyed: true,
-      ModuleIds: []
+      instructions: 'inst',
+      isAvaibale: true,
+      trainerId: 1,
+      userId: 1
     },
     {
       id: 2,
@@ -33,7 +36,10 @@ export class AvailableCoursesComponent {
       type: 'nutrition',
       image: '/assets/images/course2.jpg',
       isBuyed: true,
-      ModuleIds: []
+      instructions: 'inst',
+      isAvaibale: true,
+      trainerId: 1,
+      userId: 1
     },
     {
       id: 3,
@@ -44,7 +50,10 @@ export class AvailableCoursesComponent {
       type: 'fitness',
       image: '/assets/images/course3.jpg',
       isBuyed: true,
-      ModuleIds: []
+      instructions: 'inst',
+      isAvaibale: true,
+      trainerId: 1,
+      userId: 1
     }
   ];
   router = inject(Router);

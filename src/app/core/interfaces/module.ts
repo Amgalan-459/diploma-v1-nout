@@ -3,5 +3,6 @@ export interface Module {
     title: string,
     expanded: boolean,
     isAvailable: boolean,
-    courseId: number
+    courseId: number,
+    userId: number
 }
