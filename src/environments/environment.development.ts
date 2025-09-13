@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:5000'
+    apiUrl: 'https://diplomaserver-test-docker-v1.onrender.com'
 };
