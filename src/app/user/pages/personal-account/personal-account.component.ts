@@ -4,6 +4,8 @@ import { RouterLink } from '@angular/router';
 import { TraineeData } from '../../../core/interfaces/trainee-data';
 import { AuthService } from '../../../core/services/auth.service';
 import { TraineeService } from '../../../core/services/trainee.service';
+import { CourseService } from '../../../core/services/course.service';
+import { Course } from '../../../core/interfaces/course';
 
 interface MenuItem {
   label: string;
@@ -25,41 +27,39 @@ export class PersonalAccountComponent {
   menu: MenuItem[] = [
     {
       label: 'Онлайн академия',
-      icon: '/images/education-cap-svgrepo-com.svg',
+      icon: '/sidebar/Gym.svg',
       children: [
         {
-          label: 'Доступные курсы', link: '/academy/available',
+          label: 'Доступные курсы', link: '/online-academy/available-courses',
           subChildren: [
-            { label: 'купленные курсы', link: '/academy/available' },
+            { label: 'купленные курсы', link: '/online-academy/available-courses' },
           ]
         },
         {
-          label: 'Другие курсы к покупке', link: '/academy/other', subChildren: [
-            { label: 'все', link: '/academy/js' },
-            { label: 'RECOMPOSITION', link: '/academy/angular' },
-            { label: 'парсятся типы и заполняются', link: '/academy/angular' }
+          label: 'Другие курсы к покупке', link: '', subChildren: [
+            { label: 'все', link: '/online-academy/other-courses' },
           ]
         },
         {
-          label: 'База знаний', link: '/academy/library', subChildren: [
-            { label: 'парсятся типы и заполняются', link: '/academy/angular' }
+          label: 'База знаний', link: '', subChildren: [
+            { label: 'парсятся типы и заполняются', link: '/online-academy/knowladge-base' }
           ]
         }
       ]
     },
     {
       label: 'Тренировочный план',
-      icon: '/images/rehabilitation-training.svg',
+      icon: '/sidebar/Gym Calendar.svg',
       children: [
         {
-          label: 'Программы и курсы', link: '/training/programs', subChildren: [
+          label: 'Программы и курсы', link: '', subChildren: [
             { label: 'RECOMPOSITION', link: '/academy/js' },
             { label: 'Курс - Набор мышечной массы', link: '/academy/angular' },
             { label: 'Курсы для прохождения', link: '/academy/angular' }
           ]
         },
         {
-          label: 'Тип тренировок', link: '/training/types', subChildren: [
+          label: 'Тип тренировок', link: '', subChildren: [
             { label: 'Силовые', link: '/academy/js' },
             { label: 'Кардио', link: '/academy/angular' }
           ]
@@ -68,10 +68,10 @@ export class PersonalAccountComponent {
     },
     {
       label: 'Метрики/Результаты',
-      icon: '/images/result-svgrepo-com.svg',
+      icon: '/sidebar/Measuring Tape.svg',
       children: [
         {
-          label: 'База', link: '/results/academy', subChildren: [
+          label: 'База', link: '', subChildren: [
             { label: 'Основные данные об атлете', link: '/academy/js' },
             { label: 'Достижения', link: '/academy/angular' },
             { label: 'Текущий этап - цели', link: '/academy/angular' },
@@ -80,17 +80,17 @@ export class PersonalAccountComponent {
           ]
         },
         {
-          label: 'Академия', link: '/results/academy', subChildren: [
+          label: 'Академия', link: '', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками результативности', link: '/academy/js' },
           ]
         },
         {
-          label: 'Тренировочный план', link: '/results/academy', subChildren: [
+          label: 'Тренировочный план', link: '', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками соблюдения тренировочного плана', link: '/academy/js' },
           ]
         },
         {
-          label: 'План питания', link: '/results/academy', subChildren: [
+          label: 'План питания', link: '', subChildren: [
             { label: 'завершенные и текущие курсы / цикли / программы с метриками соблюдения плана питания', link: '/academy/js' },
           ]
         },
@@ -103,7 +103,7 @@ export class PersonalAccountComponent {
     },
     {
       label: 'План питания',
-      icon: '/images/food-351.svg',
+      icon: '/sidebar/MP3 Player.svg',
       children: [
         { label: 'Рацион для курса набора', link: '/food/1' },
         { label: 'Рацион для RECAMP', link: '/food/2' }
@@ -111,7 +111,7 @@ export class PersonalAccountComponent {
     },
     {
       label: 'Отчетность - Анкета',
-      icon: '/images/report-28.svg',
+      icon: '/sidebar/Gym Report.svg',
       children: [
         { label: 'Отчет за день о курсе RECAMP - пройден 25%', link: '/report/1' },
         { label: 'Отчет за день о курсе набора массы - завершен 100%', link: '/report/2' }
@@ -119,13 +119,57 @@ export class PersonalAccountComponent {
     }
   ];
 
+  showCalendar = false;
+  currentYear = new Date().getFullYear();
+  months = [
+    { name: 'Январь', num: '01', days: Array.from({ length: 31 }, (_, i) => i + 1) },
+    { name: 'Февраль', num: '02', days: Array.from({ length: 28 }, (_, i) => i + 1) },
+    { name: 'Март', num: '03', days: Array.from({ length: 31 }, (_, i) => i + 1) },
+    { name: 'Апрель', num: '04', days: Array.from({ length: 30 }, (_, i) => i + 1) },
+    { name: 'Май', num: '05', days: Array.from({ length: 31 }, (_, i) => i + 1) },
+    { name: 'Июнь', num: '06', days: Array.from({ length: 30 }, (_, i) => i + 1) },
+    { name: 'Июль', num: '07', days: Array.from({ length: 31 }, (_, i) => i + 1) },
+    { name: 'Август', num: '08', days: Array.from({ length: 31 }, (_, i) => i + 1) },
+    { name: 'Сентябрь', num: '09', days: Array.from({ length: 30 }, (_, i) => i + 1) },
+    { name: 'Октябрь', num: '10', days: Array.from({ length: 31 }, (_, i) => i + 1) },
+    { name: 'Ноябрь', num: '11', days: Array.from({ length: 30 }, (_, i) => i + 1) },
+    { name: 'Декабрь', num: '12', days: Array.from({ length: 31 }, (_, i) => i + 1) }
+  ];
+
   activeIndex: number | null = null;
   activeSubIndex: number | null = null;
   editMode = false;
   editUser: any = {};
 
-  constructor(private authService: AuthService, private traineeService: TraineeService) {
+  constructor(private authService: AuthService, private traineeService: TraineeService, courseService: CourseService) {
     this.user = authService.getUser()
+    courseService.getAllAvailableCourses().then(res =>{
+      for(let course of res){
+        if (course.isBuyed && course.userId == this.user?.id){
+          this.menu[0].children?.[0].subChildren?.push({
+            label: course.title + course.progressText,
+            link: '/online-academy/available-courses'
+          })
+        }
+        else if(course.userId == 0) {
+          this.menu[0].children?.[1].subChildren?.push({
+            label: course.title + course.progressText,
+            link: '/online-academy/available-courses'
+          })
+        }
+      }
+    })
+  }
+
+  openCalendar(sub: any) {
+    this.showCalendar = !this.showCalendar;
+  }
+
+  closeCalendar(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.showCalendar = false;
   }
 
   onClickDrop(event: Event, index: number) {
@@ -150,7 +194,7 @@ export class PersonalAccountComponent {
         }
       });
       if (dsEl) {
-        dsEl.style.paddingTop = `${target.offsetTop}px`;
+        dsEl.style.paddingTop = `${target.offsetTop - 100}px`;
         dsEl.classList.toggle("show")
       }
     }
@@ -160,6 +204,7 @@ export class PersonalAccountComponent {
     event.stopPropagation();
     const target = event.currentTarget as HTMLElement;
     this.activeSubIndex = this.activeSubIndex === index ? null : index;
+    console.log(this.activeSubIndex)
 
     if (this.dropside && this.subdropside) {
       const dsEl = this.dropside.get(this.activeIndex!)?.nativeElement
@@ -172,6 +217,7 @@ export class PersonalAccountComponent {
       });
 
       if (sdsEl) {
+        console.log(sdsEl, dsEl)
         sdsEl.style.paddingTop = `${target.offsetTop}px`;
         sdsEl.classList.toggle("show")
       }
@@ -203,7 +249,7 @@ export class PersonalAccountComponent {
 
   async saveChanges() {
     await this.traineeService.postTrainee((this.editUser as TraineeData)).then(res => {
-      
+
     })
 
     this.user = { ...this.editUser };

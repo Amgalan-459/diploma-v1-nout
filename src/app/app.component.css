@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Courier New', Courier, monospace;
+    color: #000000;
 }
 
 html, body {
@@ -63,10 +64,6 @@ p {
 }
 
 .logo {
-    color: rgb(194, 192, 192);
-    font-weight: 600;
-    letter-spacing: .125em;
-    text-transform: uppercase;
 }
 
 .header-nav {
@@ -150,7 +147,8 @@ p {
     align-items: center;
     padding: 1em;
     position: relative;
-    background: #222;
+    /* background: #E5FF00; */
+    background-color: #222;
     text-align: center;
     z-index: 11;
 }

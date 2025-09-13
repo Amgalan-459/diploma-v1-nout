@@ -1,0 +1,52 @@
+<div class="course-player">
+    <aside class="sidebar">
+        <h3 class="sidebar-title">{{ courseTitle }}</h3>
+        <div class="student">
+            <div class="avatar"></div>
+            <div>
+                <p class="student-name">{{ student.name }}</p>
+                <p class="student-status">Мой прогресс</p>
+            </div>
+        </div>
+
+        <ul class="modules">
+            <li *ngFor="let module of modules">
+                <div class="module-header" (click)="toggleModule(module)">
+                    <span>{{ module.title }}</span>
+                    <span class="progress-count">{{ moduleProgress(module) }}</span>
+                </div>
+
+                <div class="module-progress">
+                    <div class="progress-bar" [style.width.%]="moduleProgressPercent(module)">
+                    </div>
+                </div>
+
+                <ul class="lessons" *ngIf="module.expanded">
+                    <li *ngFor="let lesson of module.lessons" [class.active]="lesson.id === activeLessonId"
+                        (click)="selectLesson(lesson)">
+                        <span>{{ lesson.title }}</span>
+                        <span *ngIf="lesson.completed" class="check">✔</span>
+                    </li>
+
+                    <li class="test-link" *ngIf="module.test">
+                        <a (click)="openTest(module.test)">{{ module.test.title }}</a>
+                        <span *ngIf="module.test.completed" class="check">✔</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <header class="content-header">
+            <h1>{{ activeLesson?.title }}</h1>
+        </header>
+
+        <section class="lesson-body">
+            <div *ngIf="safeVideoUrl" class="video">
+                <iframe [src]="safeVideoUrl" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="lesson-text" [innerHTML]="activeLesson?.content"></div>
+        </section>
+    </main>
+</div>

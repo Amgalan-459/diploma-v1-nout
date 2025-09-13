@@ -1,10 +1,11 @@
+/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     width: 90px;
     height: 100vh;
-    background-color: gray;
+    background-color: #1a1a1a;
     color: white;
     transition: width 0.75s ease;
     overflow: hidden;
@@ -19,6 +20,7 @@
 .sidebar .menu-items {
     list-style: none;
     padding: 0;
+    padding-top: 100px;
     margin: 0;
 }
 
@@ -33,10 +35,14 @@
 }
 
 .sidebar .menu-items .label {
-    white-space: nowrap;
     opacity: 0;
     font-size: 16px;
     transition: opacity 0.5s ease;
+}
+
+.sidebar .menu-items li img{
+    height: 30px;
+    width: 30px;
 }
 
 .sidebar:hover .menu-items .label {
@@ -44,100 +50,260 @@
 }
 
 .sidebar .menu-items li:hover {
-    background-color: rgb(92, 92, 92);
+    background-color: #333;
 }
 
 .sidebar .menu-items img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
 }
 
-.sidebar .menu-item {
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-    margin: 0;
-}
-
+/* Вторая панель */
 .dropside {
     display: none;
     position: fixed;
     top: 0;
     left: 250px;
-    width: 250px;
+    width: 260px;
     height: 100vh;
-    background-color: #373738;
-    color: white;
+    background-color: #CBCCCF;
+    color: black;
     z-index: 20;
     overflow-y: auto;
-    padding-top: 10vh;
-    gap: 10px;
 }
 
-.dropside .menu-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.date {
+    position: relative;
+    display: flex;
 }
 
 .dropside .menu-items li {
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+
+    &:hover {
+        background-color: #E5FF00;
+    }
 }
 
-.dropside .menu-items li:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.dropside .menu-items a {
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
+/* Третья панель */
 .sub-dropside {
     display: none;
     position: fixed;
     top: 0;
-    left: 500px;
-    width: 250px;
+    left: 510px;
+    width: 350px;
     height: 100vh;
-    background-color: #047857;
-    color: white;
+    background-color: #E5FF00;
+    color: black;
     z-index: 30;
     overflow-y: auto;
-}
-
-.sub-dropside ul {
-    list-style: none;
-    margin: 0;
     padding: 0;
+    white-space: normal;
+    word-wrap: break-word;
+
+    ul {
+        padding-left: 0;
+    }
 }
 
-.sub-dropside li {
-    padding: 10px;
+.sub-dropside ul li {
+    padding: 0;
+    font-size: 10px;
     cursor: pointer;
-    font-size: 16px;
 }
 
-.sub-dropside li:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+.sub-dropside ul li:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.sub-dropside a {
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
-.show{
+/* Показ */
+.show {
     display: block !important;
 }
 
+/* Календарь */
+.calendar-overlay {
+    position: absolute;
+    top: 0;
+    left: 90px;
+    right: 0;
+    bottom: 0;
+    background-color: #3a3a3a;
+    color: white;
+    padding: 30px;
+    z-index: 50;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.1);
+    color: #dfff00;
+}
+
+.calendar-overlay h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.months {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.month {
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.month h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.days a {
+    color: #dfff00;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.days a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
 
 .content {
     margin-left: 90px;
     transition: margin-left 1s ease;
     position: relative;
     z-index: 1;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 20px;
+    background-color: #1e1e1e;
+}
+
+/* --- карточка --- */
+.course-card {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.course-image {
+    background-color: #444;
+    /* заглушка */
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.course-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.course-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.course-author {
+    font-size: 12px;
+    color: #aaa;
+    margin: 0 0 12px 0;
+}
+
+.course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.course-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #dfff00;
+}
+
+.star {
+    font-size: 14px;
+}
+
+.course-progress {
+    color: #fff;
+}
+
+/* --- адаптив --- */
+@media (max-width: 1199px) {
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .course-image {
+        height: 140px;
+    }
+
+    .course-title {
+        font-size: 13px;
+    }
+
+    .course-author,
+    .course-footer {
+        font-size: 11px;
+    }
 }

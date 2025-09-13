@@ -11,15 +11,18 @@ import { AuthService } from './core/services/auth.service';
 export class AppComponent {
   router = inject(Router);
   isLoggedIn = false;
-  name = ""
+  name: string
 
   constructor(private authService: AuthService) {
-    this.name = authService.getName()
+    this.name = "Amgalan";
   }
 
   ngOnInit(): void {
     this.authService.loggedIn$.subscribe(status => {
       this.isLoggedIn = status;
+    });
+    this.authService.name$.subscribe(status => {
+      this.name = status
     });
   }
 

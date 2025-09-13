@@ -19,8 +19,17 @@ export class KnowladgeService {
     return await firstValueFrom(this.http.get<Knowladgebase>(environment.apiUrl + '/api/knowladgebase/' + id));
   }
 
+  async getKnowledgeBasesByTraineeId(traineeId: number): Promise<Knowladgebase[]> {
+    return await firstValueFrom(this.http.get<Knowladgebase[]>(environment.apiUrl + '/api/knowledge/trainee/' + traineeId));
+  }
+
   async postKnowladgebase(knowladgebase: Knowladgebase): Promise<Knowladgebase> {
     return await firstValueFrom(this.http.post<Knowladgebase>(environment.apiUrl + '/api/knowladgebase', knowladgebase));
+  }
+
+  async addToMyFavKnowledgebase(traineeId: number, knowledgeId: number): Promise<string> {
+    return await firstValueFrom(this.http.post<string>(environment.apiUrl + '/api/traineesknowledgebases/'
+      + traineeId + '/' + knowledgeId, null));
   }
 
   async deleteKnowladgebase(id: number): Promise<Knowladgebase> {
