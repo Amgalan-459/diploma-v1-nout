@@ -25,22 +25,22 @@ export class CoursesComponent {
       ]
     },
     {
-      title: 'Модуль №1: Природа тревоги',
+      title: 'Модуль №1: Питание и все о нем',
       expanded: true,
       lessons: [
-        { id: 3, title: 'Урок №1: Что такое тревога?', completed: true, videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4', content: 'Описание урока 1' },
-        { id: 4, title: 'Урок №2: Плохая и хорошая тревога', completed: true, videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4', content: 'Описание урока 2' },
-        { id: 5, title: 'Урок №3: Как человек становится тревожным?', completed: false, videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4', content: 'Описание урока 3' },
-        { id: 6, title: 'Урок №4: Бывают ли не тревожные люди?', completed: false, videoUrl: '', content: 'Описание урока 4' }
+        { id: 3, title: 'Урок №1: Что такое изотоник?', completed: true, videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4', content: 'Описание урока 1' },
+        { id: 4, title: 'Урок №2: Для чего используются предтрены', completed: true, videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4', content: 'Описание урока 2' },
+        { id: 5, title: 'Урок №3: Как не уйти в фарму?', completed: false, videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4', content: 'Описание урока 3' },
+        { id: 6, title: 'Урок №4: Почему не нужен креатин?', completed: false, videoUrl: '', content: 'Описание урока 4' }
       ],
       test: { id: 't1', title: 'Тест модуля 1', completed: false }
     },
     {
-      title: 'Модуль №2: Теоретические модели тревоги',
+      title: 'Модуль №2: Цикл 1',
       expanded: false,
       lessons: [
-        { id: 7, title: 'Урок №1: Основные теоретические модели тревоги', completed: false, videoUrl: '', content: 'Описание урока 5' },
-        { id: 8, title: 'Урок №2: Биопсихосоциальная модель тревоги', completed: false, videoUrl: '', content: 'Описание урока 6' }
+        { id: 7, title: 'Урок №1: Основы и работа', completed: false, videoUrl: '', content: 'Описание урока 5' },
+        { id: 8, title: 'Урок №2: Прогресс', completed: false, videoUrl: '', content: 'Описание урока 6' }
       ],
       test: { id: 't2', title: 'Тест модуля 2', completed: false }
     }
