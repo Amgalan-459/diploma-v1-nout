@@ -20,16 +20,30 @@ export class SignUpComponent {
     passwordConiform: new FormControl('', [Validators.required])
   }, { validators: passwordMatchValidator });
 
+  loading = false
+  errorMessage: string | null = null
+
   constructor(private router: Router, private authService: AuthService) {}
 
   async onSubmit() {
     if (this.form.valid) {
-      console.log('Registration submitted!', this.form.value);
-      let trainee: TraineeData = await this.authService.AddOrUpdateTrainee(this.form.value.email!,
-        this.form.value.password!, this.form.value.name!)
-      this.router.navigate(['/auth/login']);
+      this.loading = true
+      this.errorMessage = null
+
+      try{
+        let trainee: TraineeData = await this.authService.AddOrUpdateTrainee(this.form.value.email!,
+          this.form.value.password!, this.form.value.name!)
+          this.router.navigate(['/auth/login']);
+        }
+        catch(ex){
+          console.log(ex)
+          this.errorMessage = "Ошибка регистрации. Попробуйте позже"
+        }
+        finally{
+          this.loading = false
+        }
     } else {
-      console.log('Form is invalid.');
+      this.errorMessage = "Проверьте правильность заполнения формы"
     }
   }
 }

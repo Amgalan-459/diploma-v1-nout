@@ -13,6 +13,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class ForgotpasswordComponent {
   step: 'email' | 'code' | 'password' = 'email'; // текущий шаг формы
+  loading = false;
 
   emailForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email])
@@ -27,7 +28,7 @@ export class ForgotpasswordComponent {
     passwordConiform: new FormControl('', [Validators.required, Validators.minLength(8)])
   }, { validators: passwordMatchValidator })
 
-  code: number = 0;
+  code: number | null = null;
   isEmailValid: boolean = true
   isError: boolean = false
   isCodeValid: boolean = true
@@ -36,6 +37,8 @@ export class ForgotpasswordComponent {
 
   async sendCode() {
     if (this.emailForm.valid) {
+      this.loading = true
+
       try{
         this.code = await this.authService.forgotPassword(this.emailForm.value.email!)
         this.step = 'code';
@@ -44,11 +47,15 @@ export class ForgotpasswordComponent {
         console.log(ex)
         this.isError = true
       }
+      finally{
+        this.loading = false
+      }
     }
   }
 
   confirmCode() {
     if (this.codeForm.valid) {
+      this.loading = true
       if (this.code === Number(this.codeForm.value.code)) {
         this.step = 'password'
         this.isCodeValid = true
@@ -56,11 +63,14 @@ export class ForgotpasswordComponent {
       else {
         this.isCodeValid = false
       }
+      this.loading = false
     }
   }
 
   async setNewPassword() {
     if (this.newPassForm.valid) {
+      this.loading = true
+
       await this.authService.AddOrUpdateTrainee(this.emailForm.value.email!, this.newPassForm.value.password!, '')
       try {
         await this.authService.login(this.emailForm.value.email!, this.newPassForm.value.password!);
@@ -68,6 +78,9 @@ export class ForgotpasswordComponent {
       } catch (err: any) {
         console.error('Ошибка входа', err);
         alert("ошибка входа")
+      }
+      finally{
+        this.loading = false
       }
     }
   }
