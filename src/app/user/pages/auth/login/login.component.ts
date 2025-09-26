@@ -26,13 +26,14 @@ export class LoginComponent {
   }
 
   async onSubmit() {
+    this.errorMessage = null;
+    
     if (this.form.invalid) {
       this.errorMessage = 'Проверьте правильность заполнения формы';
       return;
     }
 
     this.loading = true;
-    this.errorMessage = null;
 
     const { email, password } = this.form.value;
 
